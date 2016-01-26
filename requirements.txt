@@ -9,3 +9,6 @@ django_extensions<1.6
 ipython<3.2
 requests<2.8
 beautifulsoup4<4.3.3
+
+git+git://github.com/django-haystack/django-haystack.git@cecb459#egg=Haystack
+elasticsearch<1.3

@@ -21,6 +21,9 @@ path.append(DJANGO_ROOT)
 ########## END PATH CONFIGURATION
 
 
+SECRET_KEY = 'n=!uuzh5#7%c_c4#*6p_qk%3we&r@mh)5av3d9+bqm2j$_8#i^'
+
+
 ########## DEBUG CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = False
