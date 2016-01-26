@@ -178,6 +178,8 @@ WSGI_APPLICATION = 'eulers_cookbook.wsgi.application'
 
 ########## APP CONFIGURATION
 DJANGO_APPS = (
+    'grappelli.dashboard',
+    'grappelli',
     # Default Django apps:
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -186,7 +188,6 @@ DJANGO_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-    'grappelli',
     'haystack',
     'rest_framework',
 
