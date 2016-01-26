@@ -15,7 +15,7 @@ from .base import *
 DEBUG = False
 TEMPLATE_DEBUG = False
 
-STATIC_ROOT = '/home/zachc/dev/flickpick-project/staticfiles/'
+STATIC_ROOT = '/home/zachc/dev/eulers_cookbook/staticfiles/'
 
 def get_env_setting(setting):
     """ Get the environment setting or return exception """
@@ -60,7 +60,7 @@ SERVER_EMAIL = EMAIL_HOST_USER
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'moviedb',
+        'NAME': 'eulerdb',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
@@ -92,5 +92,5 @@ HAYSTACK_SEARCH_RESULTS_LIMIT_PER_CATEGORY = 10
 
 ########## SECRET CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
-SECRET_KEY = 'UEWU48urn5793&sdjjj-du2p}84hgU'
+SECRET_KEY = environ['SECRET_KEY']
 ########## END SECRET CONFIGURATION

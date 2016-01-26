@@ -27,7 +27,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'moviedb',
+        'NAME': 'eulerdb',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

@@ -46,7 +46,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'moviedb',
+        'NAME': 'eulerdb',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
@@ -109,7 +109,7 @@ STATICFILES_FINDERS = (
 ########## SECRET CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 # Note: This key should only be used for development and testing.
-SECRET_KEY = r"{{ secret_key }}"
+SECRET_KEY = 'UEWU48urn5793&sdjjj-du2p}84hgU'
 ########## END SECRET CONFIGURATION
 
 
@@ -170,7 +170,9 @@ MIDDLEWARE_CLASSES = (
 
 ########## URL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
-ROOT_URLCONF = '%s.urls' % SITE_NAME
+ROOT_URLCONF = 'eulers_cookbook.urls'
+
+WSGI_APPLICATION = 'eulers_cookbook.wsgi.application'
 ########## END URL CONFIGURATION
 
 
@@ -186,9 +188,7 @@ DJANGO_APPS = (
     'django_extensions',
     'grappelli',
     'haystack',
-
-    # Useful template tags:
-    # 'django.contrib.humanize',
+    'rest_framework',
 
     # Admin panel and documentation:
     'django.contrib.admin',
@@ -198,9 +198,7 @@ DJANGO_APPS = (
 # Apps specific for this project go here.
 LOCAL_APPS = (
     'accounts',
-    'movies',
-    'pages',
-    'viewing',
+    'problems',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -239,9 +237,3 @@ LOGGING = {
     }
 }
 ########## END LOGGING CONFIGURATION
-
-
-########## WSGI CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
-WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
-########## END WSGI CONFIGURATION
