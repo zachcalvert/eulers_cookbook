@@ -1,0 +1,43 @@
+/*! project specific CSS goes here. */
+
+body {
+	padding-top: 31px;
+	font-family: "Lucida Sans Unicode";
+    background: #E1E3E4;
+    margin:  0px;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    margin-left: 0!important;
+    margin-right: 0!important;
+    width: 100%;
+}
+
+.navbar-nav {
+    float: left;
+    margin: 0;
+    width: 80%;
+}
+
+#logout {
+    float: right;
+}
+
+.page-content {
+	padding: 0 20px;
+    margin: 0;
+}
+
+
+/* -----------  ----------- */
+@media screen and (max-width: 767px) {
+  
+    #logout {
+        float:none;
+    }
+
+}
