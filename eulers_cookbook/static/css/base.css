@@ -9,15 +9,23 @@ body {
 
 #site-header {
     width: 100%;
-    float: left;
     background:  #FFF;
     margin: 0px 0px 0px 0px;
-    height: 76px;
+    height: 66px;
 }
 
 #site-header-logo {
     float: left;
     position: relative;
+}
+
+#site-header-img {
+    height: 66px;
+}
+
+#site-header-logo a {
+    text-decoration: none;
+    color: #000;
 }
 
 ul.nav-menu {
@@ -44,11 +52,11 @@ ul.nav-menu {
 
 .pagination a {
     margin: 0 10px;
-    color: #FFF;
+    color: #444444;
     text-decoration: none!important;
 }
 .pagination a:hover {
-    color: #444444;
+    color: #FFF;
 }
 
 #mobile-nav-icons {
@@ -83,7 +91,7 @@ td.solved {
 }
 
 .table-of-contents a:hover {
-    color: #65A7A1;
+    color: #000026;
 }
 
 #current-page {
@@ -103,7 +111,7 @@ td.solved {
 
 .problem-header {
     margin: 0px;
-    background: #65A7A1;
+    background: #000026;
     padding: 0px;
     width:  100%;
 }
@@ -131,9 +139,10 @@ td.solved {
 }
 
 .problem-description {
-    margin: 0 10% 0 5%;
-    padding: 10px 0;
-    font-size:24px;
+    margin: 0px 10% 0px 8%;
+    padding: 32px 0px;
+    font-size: 16px;
+    text-align: justify;
 }
 
 .container {
@@ -154,4 +163,13 @@ td.solved {
 .page-content {
 	padding: 0 20px;
     margin: 0;
+}
+
+#euler-link {
+    width: 100%;
+    text-align: center;
+}
+
+#euler-link a {
+    color: #000;
 }
