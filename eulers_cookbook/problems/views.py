@@ -1,57 +1,56 @@
 import json
 from datetime import datetime
 
-from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render_to_response, get_object_or_404, redirect
-from django.template import RequestContext, TemplateDoesNotExist
+from django.shortcuts import get_object_or_404
+from django.template import TemplateDoesNotExist
 from django.template.loader import get_template
+from django.views.generic import TemplateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import HttpResponse
-from django.contrib import messages
-from django.utils.translation import ugettext_lazy as _
 
 from problems.models import Problem
 
-def site_home(request, template_name = 'base.html'):
 
-    problems = Problem.objects.all()    
+class HomePageView(TemplateView):
+    template_name = 'base.html'
 
-    paginator = Paginator(problems, 10)
-    page = request.GET.get('page')    
+    def get_context_data(self, *args, **kwargs):
+        context = super(HomePageView, self).get_context_data(**kwargs)
+        
+        problems = Problem.objects.all()    
 
-    try:
-        problems = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        problems = paginator.page(1)
-    except EmptyPage:
-    # If page is out of range (e.g. 9999), deliver last page of results.
-        problems = paginator.page(paginator.num_pages)    
+        paginator = Paginator(problems, 10)
+        page = self.request.GET.get('page')    
 
-    context = {
-        'problems': problems,
-    }    
+        try:
+            problems = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            problems = paginator.page(1)
+        except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+            problems = paginator.page(paginator.num_pages)    
 
-    return render_to_response(template_name, context_instance=RequestContext(request, context))
+        context['paginator'] = paginator
+        context['problems'] = problems
 
-
-def about(request, template_name='about.html'):
-    context = {}
-    return render_to_response(template_name, context_instance=RequestContext(request, context))
+        return context
 
 
-def euler_problem(request, problem_number):
-    template_name = "solutions/{}.html".format(problem_number)
-    try:
-        get_template(template_name)
-    except TemplateDoesNotExist:
-        template_name = "problem.html"    
+class EulerProblemView(TemplateView):
+    template_name = "problem.html"
 
-    problem = get_object_or_404(Problem, number=problem_number)    
+    def get_context_data(self, *args, **kwargs):
+        context = super(EulerProblemView, self).get_context_data(**kwargs)
+        
+        name = "solutions/{}.html".format(kwargs['problem_number'])
+        try:
+            get_template(name)
+        except TemplateDoesNotExist:
+            template_name = "problem.html" 
 
-    context = {
-        'problem': problem,
-    }    
+        problem = get_object_or_404(Problem, number=kwargs['problem_number'])    
 
-    return render_to_response(template_name, context_instance=RequestContext(request, context))
+        context['problem'] = problem
+
+        return context
 
