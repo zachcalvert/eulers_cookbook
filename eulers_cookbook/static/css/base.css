@@ -1,14 +1,134 @@
 /*! project specific CSS goes here. */
 
 body {
-	padding-top: 31px;
 	font-family: "Lucida Sans Unicode";
-    background: #E1E3E4;
+    background: #FFF;
     margin:  0px;
+    font-size: 16px;
+}
+
+#mobile-nav-icons {
+    display: none;
 }
 
 ul {
     list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #999;
+  padding: 0.5rem;
+  text-align: left;
+  background: #FFF;
+}
+
+td.solved {
+    text-align:center;
+}
+
+ul.nav-menu {
+    padding-top: 3px;
+    text-align: justify;
+    text-transform: uppercase;
+    float: left;
+    margin-left: 14px;
+    font-size: 17px;
+    display: inline-block;
+}
+ ul.nav-menu li {
+    list-style-type: none;
+    display: inline-block;
+}
+
+/* home page nav */
+.pagination {
+    text-align: center;
+    width: 100%;
+    background: #E1E3E4;
+    margin: 0px 0 20px 0!important;
+    padding: 13px;
+    display: inline-block;
+    border-radius: 0!important;
+    color: #000026;;
+}
+
+.pagination a {
+    margin: 0 10px;
+    color: #FFF;
+    text-decoration: none!important;
+}
+.pagination a:hover {
+    color: #444444;
+}
+
+/*home page table*/
+
+.table-of-contents {
+    margin: 05%;
+    width: 90%;
+}
+
+.table-of-contents a {
+    color: #000026;
+    text-decoration: none!important;
+}
+
+.table-of-contents a:hover {
+    color: #65A7A1;
+}
+
+#current-page {
+    margin: 0 10px;
+}
+
+/* login page */
+#login-form {
+    padding: 20px;
+}
+
+#login-button {
+    margin: 10px;
+}
+
+/* problem page stuff */
+
+.problem-header {
+    margin: 0px;
+    background: #65A7A1;
+    padding: 0px;
+    width:  100%;
+}
+
+.problem-header a {
+    margin-top:  10px;
+    color: #fff;
+    text-decoration: none!important;
+}
+
+.problem-header a:hover {
+    color: #444444;
+}
+
+.prev-problem {
+    float: left;
+    margin-left: 20px;
+    color: #000!important;
+}
+
+.next-problem {
+    float: right;
+    margin-right: 40px;
+    color: #000!important;
+}
+
+.problem-description {
+    margin: 0 10% 0 5%;
+    padding: 10px 0;
+    font-size:24px;
 }
 
 .container {
@@ -20,7 +140,6 @@ ul {
 .navbar-nav {
     float: left;
     margin: 0;
-    width: 80%;
 }
 
 #logout {
@@ -30,14 +149,4 @@ ul {
 .page-content {
 	padding: 0 20px;
     margin: 0;
-}
-
-
-/* -----------  ----------- */
-@media screen and (max-width: 767px) {
-  
-    #logout {
-        float:none;
-    }
-
 }

@@ -6,11 +6,9 @@
             {% endblock %}
         </title>
         
-        {% block head_js %}
-			<script src="{{ STATIC_URL }}js/jquery-2.1.4.min.js"></script>
-		{% endblock %}
 		{% block head_css %}
 			<link rel="stylesheet" href="{{ STATIC_URL }}css/base.css"/>
+			<link rel="stylesheet" href="{{ STATIC_URL }}css/responsive.css"/>
 			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 			<link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}images/euler.jpeg" />
 		{% endblock %}
@@ -23,8 +21,13 @@
 					<a href='{% url "site_home" %}'><h3>Euler's Cookbook</h3></a>
 				</div>
 				<div id="site-header-menu">
-					<a href="#"><i class="fa fa-bars"></i></a>
-					<ul class="hmenu">
+				    
+				    <ul id="mobile-nav-icons">
+				        <li id="top-nav-menu"><a href="javascript:;"><i class="fa fa-bars"></i></a></li>
+				        <li><a href="javascript:;"><i class="fa fa-search"></i></a></li>
+				    </ul>
+
+					<ul class="nav-menu">
 	                    <li><a href='{% url "about" %}'>About</a></li>
 	                    <li><a href="https://github.com/zachcalvert/euler_cookbook">View on GitHub</a></li>
 	                    <li>
@@ -120,20 +123,60 @@
 			</div>
 		{% endblock %}
 
+        {% block js %}
+			<script src="{{ STATIC_URL }}js/jquery-2.1.4.min.js"></script>
+		{% endblock %}
+
 		{% block extra_body_content %}
 			<script>
 			    $(document).ready(function () {
-		            $('#site-header-menu a').click(function(){
-		                if ($("ul.hmenu").is(":visible")) {
-		                    $("ul.hmenu").slideUp(300);
+		            $('#top-nav-menu a').click(function(){
+		                if ($("ul.nav-menu").is(":visible")) {
+		                    $("ul.nav-menu").slideUp(300);
 		                    $('#site-header-menu a').css("color","#444444");
 		                } else {
-		                    $("ul.hmenu").slideDown(300);
+		                    $("ul.nav-menu").slideDown(300);
 		                    $('#site-header-menu a').css("color","#65a7a1");
 		                }
 		            });
+
+                    $('#mobile-nav-icons .fa-search').click(function () {
+		                // get template
+		                var search_template = $('#search-overlay-template').html();
+		                // load it in
+		                $('#footer').after(search_template);
+		            });
+
+                    $('body').on('click', '.search-close', function () {
+		                $('#search-overlay').remove();
+		            });
 			    });
+
+	            $(document).mouseup(function (e) {
+	                var container = $("ul.nav-menu");
+	                if (!container.is(e.target) // if the target of the click isn't the container...
+	                    && container.has(e.target).length === 0 // ... nor a descendant of the container
+	                    && $(window).width() < 1023) // and the window is appropriately sized
+	                {
+	                    container.slideUp(200);
+	                }
+	            });
 			</script>
+
+		    <script type="text/html" id="search-overlay-template">
+		        <div id="search-overlay">
+		            <div class="search-form-wrapper">
+		                <form class="search-form"  onsubmit="get_search_context(this);" action="{% url 'site_home' %}" role="search" method="GET">
+		                    <input type="text" name="q" class="search-text" autocomplete="off" placeholder="Search Terms..">
+		                    <button type="submit">Go</button>
+		                </form>
+		                <form id="mobile-search-context-form">
+		                    <input id="bookshelf-only-search-mobile" type="checkbox" name="search-context" value="bookshelf"> Search Bookshelf<br>
+		                </form>
+		            </div>
+		            <a href="javascript:;" class="search-close"><i class="fa fa-times-circle-o"></i></a>
+		        </div>
+		    </script>
 		{% endblock %}
 	</body>
 
