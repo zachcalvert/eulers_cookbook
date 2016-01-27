@@ -7,40 +7,26 @@ body {
     font-size: 16px;
 }
 
-#mobile-nav-icons {
-    display: none;
+#site-header {
+    width: 100%;
+    float: left;
+    background:  #FFF;
+    margin: 0px 0px 0px 0px;
+    height: 76px;
 }
 
-ul {
-    list-style: none;
-}
-
-table {
-  border-collapse: collapse;
-}
-
-td, th {
-  border: 1px solid #999;
-  padding: 0.5rem;
-  text-align: left;
-  background: #FFF;
-}
-
-td.solved {
-    text-align:center;
+#site-header-logo {
+    float: left;
+    position: relative;
 }
 
 ul.nav-menu {
-    padding-top: 3px;
-    text-align: justify;
-    text-transform: uppercase;
-    float: left;
-    margin-left: 14px;
+    float: right;
+    margin: 40px 20px 0 0;
     font-size: 17px;
     display: inline-block;
 }
  ul.nav-menu li {
-    list-style-type: none;
     display: inline-block;
 }
 
@@ -63,6 +49,25 @@ ul.nav-menu {
 }
 .pagination a:hover {
     color: #444444;
+}
+
+#mobile-nav-icons {
+    display: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #999;
+  padding: 0.5rem;
+  text-align: left;
+  background: #FFF;
+}
+
+td.solved {
+    text-align:center;
 }
 
 /*home page table*/

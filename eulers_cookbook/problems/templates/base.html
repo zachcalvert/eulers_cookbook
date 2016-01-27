@@ -39,13 +39,6 @@
 						</li>
 	                </ul>
 				</div>
-				<div id="welcome-message">
-					Welcome, {% if user.is_authenticated %}
-							    {{ user.username }}
-							{% else %}
-							    Guest
-							{% endif %}
-				</div>
 			</div>
 			{% if messages %}
 				<ul class="messages">
