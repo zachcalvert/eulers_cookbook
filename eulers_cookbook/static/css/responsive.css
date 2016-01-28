@@ -130,9 +130,11 @@
   }
 
   #mobile-nav-icons li {
-      float: right;
-      display: inline;
-      margin: 28px 10px 0 10px;
+    float: right;
+    display: inline;
+    margin: 34px 0px 0 10px;
+    padding: 0 10px;
+    font-size: 26px;
   }
 
   #mobile-nav-icons a, #mobile-nav-icons a:hover, 
@@ -149,7 +151,7 @@
 @media screen and (max-width: 767px) {
   
   body {
-      font-size: 26px;
+      font-size: 20px;
   }
 
   #logout {

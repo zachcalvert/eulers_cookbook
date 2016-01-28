@@ -10,7 +10,6 @@
 			<link rel="stylesheet" href="{{ STATIC_URL }}css/base.css"/>
 			<link rel="stylesheet" href="{{ STATIC_URL }}css/responsive.css"/>
 			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-			<link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}images/euler.jpeg" />
 		{% endblock %}
 	</head>
 
@@ -24,7 +23,7 @@
 				    
 				    <ul id="mobile-nav-icons">
 				        <li id="top-nav-menu"><a href="javascript:;"><i class="fa fa-bars"></i></a></li>
-				        <li><a href="javascript:;"><i class="fa fa-search"></i></a></li>
+				        <li id="top-nav-search"><a href="javascript:;"><i class="fa fa-search"></i></a></li>
 				    </ul>
 
 					<ul class="nav-menu">
@@ -111,7 +110,7 @@
 		{% block solution %}{% endblock %}
 
 		{% block footer %}
-			<div id="footer">
+			<div id="footer-link">
 				<a href="https://github.com/zachcalvert/euler_cookbook">View on GitHub</a><br>
 			</div>
 		{% endblock %}
@@ -119,6 +118,8 @@
         {% block js %}
 			<script src="{{ STATIC_URL }}js/jquery-2.1.4.min.js"></script>
 		{% endblock %}
+
+		{% block interactive %}{% endblock %}
 
 		{% block extra_body_content %}
 			<script>
@@ -133,11 +134,11 @@
 		                }
 		            });
 
-                    $('#mobile-nav-icons .fa-search').click(function () {
+                    $('#top-nav-search').click(function () {
 		                // get template
 		                var search_template = $('#search-overlay-template').html();
 		                // load it in
-		                $('#footer').after(search_template);
+		                $('#footer-link').after(search_template);
 		            });
 
                     $('body').on('click', '.search-close', function () {
@@ -159,12 +160,9 @@
 		    <script type="text/html" id="search-overlay-template">
 		        <div id="search-overlay">
 		            <div class="search-form-wrapper">
-		                <form class="search-form"  onsubmit="get_search_context(this);" action="{% url 'site_home' %}" role="search" method="GET">
+		                <form class="search-form" action="{% url 'site_home' %}" role="search" method="GET">
 		                    <input type="text" name="q" class="search-text" autocomplete="off" placeholder="Search Terms..">
 		                    <button type="submit">Go</button>
-		                </form>
-		                <form id="mobile-search-context-form">
-		                    <input id="bookshelf-only-search-mobile" type="checkbox" name="search-context" value="bookshelf"> Search Bookshelf<br>
 		                </form>
 		            </div>
 		            <a href="javascript:;" class="search-close"><i class="fa fa-times-circle-o"></i></a>

@@ -10,6 +10,7 @@
 
 
 {% block description %}
+
 	{% if problem.number != 1 %}
 		<a class="prev-problem" href="{{ problem | previous_url }}"> <&nbsp;&nbsp;&nbsp;Previous</a>
 	{% endif %}
@@ -18,48 +19,27 @@
 	<div class="problem-description">
 		<p>{{ problem.description | safe }}</p>
 	</div>
+
 {% endblock %}
 
 
 
 {% block content %}
+
 	{% if problem.solved %}
 		<div id="interact">
-			{% include 'solutions/interact.html' %}
+			{% include 'interact.html' %}
 		</div>
 	{% endif %}
+
 {% endblock %}
 
 
 {% block solution %}
 
 	{% if problem.solved %}
-		{% if user.is_authenticated %}
-			<button type="button" class="solution-button" data-toggle="modal" data-target="#solutionModal">Show Solution</button>
-		{% else %}
-			<div id="login-prompt" style="top:320px; text-align: center; color: #65A7A1;">
-				<a href='{% url "login" %}'>Log in to see the Solution!</a>
-			</div>
-		{% endif %}
-
-		<!-- Modal -->
-		<div id="solutionModal" class="modal fade" role="dialog">
-		  <div class="modal-dialog">
-
-		    <!-- Modal content-->
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <h4 class="modal-title">{{ problem }}</h4>
-		      </div>
-		      <div class="modal-body">
-		        <p>{{ problem.solution | safe }}</p>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		      </div>
-		    </div>
-		  </div>
+		<div id="solution">
+        	<button type="button" id="solution-button">View Solution</button>
 		</div>
 	{% endif %}
 
@@ -67,24 +47,79 @@
 
 
 {% block footer %}
-	<div id="euler-link">	
+	<div id="footer-link">	
 		<a href="{{ problem.link }}">view on project euler</a>
 	</div>
 {% endblock %}
 
 {% block extra_body_content %}
 	{{ block.super }}
+
+	<script type="text/html" id="solution-overlay-template">
+        <div id="solution-overlay">
+            <div class="solution-text">
+            	<p>{{ problem.solution | safe }}</p>
+            </div>
+            <a href="javascript:;" class="solution-close"><i class="fa fa-times-circle-o"></i></a>
+        </div>
+    </script>
+
 	<script>
 		$(document).ready(function () {
 			$("#solution-button").click(function(){
-		        if ($("#solution").is(":visible")) {
-					$("#solution").slideUp(500);
-					$("#solution-button span").text('Show solution');
-		        } else {
-		        	$("#solution").slideDown(500);
-		        	$("#solution-button span").text('Hide solution');
-		        }
-			});
+                // get template
+                var solution_template = $('#solution-overlay-template').html();
+                // load it in
+                $('#interact').after(solution_template);
+            });
+
+            $('body').on('click', '.solution-close', function () {
+                $('#solution-overlay').remove();
+            });
+		});
+	</script>
+{% endblock %}
+
+{% block interactive %}
+	{{ block.super }}
+	<script>
+		$(document).ready(function () {
+		    function calculateResult(number) {
+		        $.ajax({
+		            url: '{{ problem.callback_function }}' + '?number=' + number,
+		            type: 'get',
+		            contentType: 'application/json',
+		            success: function(response) {
+		            	// fill table cells with results
+		            	var response_data = JSON.parse(response);
+		            	console.log(response_data)
+
+		            	// check for existing entries for this number and remove
+		            	$("#request-table tr td:nth-child(1)").each(function () {
+		            		if (response_data.number == $(this).html()) {
+		            			$(this).closest('tr').css('display', 'None');
+		            		}
+						});
+
+		            	// prepend to top of the table
+		            	$('#headers').after(
+						    '<tr><td class="table-element">' + 
+						    	response_data.number + '</td><td class="table-element">' +
+						    	response_data.value  + '</td><td class="table-element">' +
+						    	response_data.last_requested  +
+						    '</td></tr>');
+		            },
+		            error: function (jqXhr, textStatus, errorThrown) {
+		                console.log(errorThrown);
+		            }
+		        });
+		    };
+
+		    $("#submit-button").click(function(){
+		        var number = $( "#id_calculator" ).val();
+		    	console.log(number);
+		        calculateResult(number);
+	    	});
 		});
 	</script>
 {% endblock %}
