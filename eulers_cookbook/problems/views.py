@@ -50,7 +50,12 @@ class EulerProblemView(TemplateView):
         return context
 
 
-class InteractiveCallbackView(View):
+class InteractiveSolutionView(View):
+    """
+    Abstract view that takes one integer as input, calculates the result (different per implementation)
+    and returns
+    a json dict with input, output and timestamp.
+    """
 
     def get_current_time(self):
         now = datetime.now()
@@ -80,19 +85,22 @@ class InteractiveCallbackView(View):
         return HttpResponse(json.dumps(content))
 
 
-class ProblemOneView(InteractiveCallbackView):
+class ProblemOneView(InteractiveSolutionView):
     """
     Problem 1: Multiples of Three and Five
     """
-    def calculate_result(self, n):
+    def multiples_of_three_and_five(self, n):
         return sum([i for i in range(n) if i % 3 == 0 or i % 5 == 0])
 
+    def calculate_result(self, n):
+        return self.multiples_of_three_and_five(n)
 
-class ProblemTwoView(InteractiveCallbackView):
+
+class ProblemTwoView(InteractiveSolutionView):
     """
     Problem 2: Even Fibonacci Numbers
     """
-    def calculate_result(self, n):
+    def even_fibonacci_numbers(self, n):
         a, b = 1, 1
         total = 0
         while a <= n:
@@ -101,12 +109,15 @@ class ProblemTwoView(InteractiveCallbackView):
             a, b = b, a+b
         return total
 
+    def calculate_result(self, n):
+        return self.even_fibonacci_numbers(n)
 
-class ProblemThreeView(InteractiveCallbackView):
+
+class ProblemThreeView(InteractiveSolutionView):
     """
     Problem 3: Largest Prime Factor
     """
-    def calculate_result(self, n):
+    def largest_prime_factor(self, n):
         i = 2
         while i * i < n:
             while n % i == 0:
@@ -114,8 +125,11 @@ class ProblemThreeView(InteractiveCallbackView):
             i = i + 1    
         return n
 
+    def calculate_result(self, n):
+        return self.largest_prime_factor(n)
 
-class ProblemSixView(InteractiveCallbackView):
+
+class ProblemSixView(InteractiveSolutionView):
     """
     Problem 6: Sum Square Difference
     """  
