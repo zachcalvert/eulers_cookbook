@@ -84,19 +84,51 @@ class ProblemOneView(InteractiveCallbackView):
     """
     Problem 1: Multiples of Three and Five
     """
-    def calculate_result(self, number):
-        return sum([i for i in range(number) if i % 3 == 0 or i % 5 == 0])
+    def calculate_result(self, n):
+        return sum([i for i in range(n) if i % 3 == 0 or i % 5 == 0])
 
 
 class ProblemTwoView(InteractiveCallbackView):
     """
     Problem 2: Even Fibonacci Numbers
     """
-    def calculate_result(self, number):
+    def calculate_result(self, n):
         a, b = 1, 1
         total = 0
-        while a <= number:
+        while a <= n:
             if a % 2 == 0:
                 total += a
             a, b = b, a+b
         return total
+
+
+class ProblemThreeView(InteractiveCallbackView):
+    """
+    Problem 3: Largest Prime Factor
+    """
+    def calculate_result(self, n):
+        i = 2
+        while i * i < n:
+            while n % i == 0:
+                n = n / i
+            i = i + 1    
+        return n
+
+
+class ProblemSixView(InteractiveCallbackView):
+    """
+    Problem 6: Sum Square Difference
+    """  
+
+    def square_of_sums(self, n):
+        return sum([ i for i in xrange(1, n + 1) ]) ** 2
+
+    def sum_of_squares(self, n):
+        return sum([ i * i for i in xrange(1, n + 1) ])  
+
+    def calculate_result(self, n):
+        """
+        Problem 4: Largest Palidrome Product
+        """
+        return self.square_of_sums(n) - self.sum_of_squares(n)    
+

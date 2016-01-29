@@ -16,4 +16,10 @@ urlpatterns = [
 	url(r'^2/even_fibonacci_numbers$', views.ProblemOneView.as_view(), 
 		name='even_fibonacci_numbers'),
 
+	url(r'^3/largest_prime_factor$', views.ProblemThreeView.as_view(), 
+		name='largest_prime_factor'),
+
+	url(r'^6/sum_square_difference$', views.ProblemSixView.as_view(), 
+		name='sum_square_difference'),
+
 ]
