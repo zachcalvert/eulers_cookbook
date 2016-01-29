@@ -5,6 +5,10 @@
                 Euler's Cookbook
             {% endblock %}
         </title>
+
+        {% block meta %}
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+        {% endblock %}
         
 		{% block head_css %}
 			<link rel="stylesheet" href="{{ STATIC_URL }}css/base.css"/>
@@ -170,5 +174,4 @@
 		    </script>
 		{% endblock %}
 	</body>
-
 </html>
