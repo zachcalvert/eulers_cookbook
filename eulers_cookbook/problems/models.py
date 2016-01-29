@@ -12,8 +12,8 @@ class Problem(models.Model):
     callback_function = models.CharField(max_length=100, null=True, blank=True)   
     output_column_header = models.CharField(max_length=80, null=True, blank=True)
 
-def get_absolute_url(self):
-    return reverse('euler_problem', kwargs={'problem_number': self.number})
+    def get_absolute_url(self):
+        return reverse('euler_problem', kwargs={'problem_number': self.number})
 
-def __unicode__(self):
-    return '#{0}: {1}'.format(self.number, self.title)
+    def __unicode__(self):
+        return '#{0}: {1}'.format(self.number, self.title)

@@ -44,7 +44,6 @@ class EulerProblemView(TemplateView):
         context = super(EulerProblemView, self).get_context_data(**kwargs)
 
         problem = get_object_or_404(Problem, number=kwargs['problem_number'])    
-
         context['problem'] = problem
 
         return context

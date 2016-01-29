@@ -62,17 +62,29 @@ ul.nav-menu a:hover {
 .navbar-nav {
     float: left;
     margin: 0;
-}
-
-.pagination {
+    background: #E1E3E4;
     text-align: center;
     width: 101%;
-    background: #E1E3E4;
     margin: 0px 0 20px 0!important;
     padding: 13px;
-    display: inline-block;
     border-radius: 0!important;
     color: #000026;;
+}
+
+.navbar-nav li {
+  display: inline-block;
+}
+
+.random-problems li {
+  background: #000;
+  width: 270px;
+  margin: 0 20px;
+}
+
+.random-problems a {
+  text-decoration: none;
+  padding: 15px;
+  color: #FFF;
 }
 
 .pagination a {
