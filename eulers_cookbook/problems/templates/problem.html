@@ -60,6 +60,7 @@
                 var solution_template = $('#solution-overlay-template').html();
                 // load it in
                 $('#interact').after(solution_template);
+                $('html, body').animate({ scrollTop: 0 }, 'fast');
             });
 
             $('body').on('click', '.solution-close', function () {
