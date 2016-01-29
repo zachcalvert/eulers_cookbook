@@ -85,6 +85,18 @@ class ProblemOneView(InteractiveCallbackView):
     Problem 1: Multiples of Three and Five
     """
     def calculate_result(self, number):
-        return sum([i for i in range(number) if i % 3 == 0 or i % 5 == 0])   
+        return sum([i for i in range(number) if i % 3 == 0 or i % 5 == 0])
 
 
+class ProblemTwoView(InteractiveCallbackView):
+    """
+    Problem 2: Even Fibonacci Numbers
+    """
+    def calculate_result(self, number):
+        a, b = 1, 1
+        total = 0
+        while a <= number:
+            if a % 2 == 0:
+                total += a
+            a, b = b, a+b
+        return total
