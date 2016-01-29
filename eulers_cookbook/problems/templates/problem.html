@@ -8,9 +8,7 @@
 	</div>
 {% endblock %}	
 
-
 {% block description %}
-
 	{% if problem.number != 1 %}
 		<a class="prev-problem" href="{{ problem | previous_url }}"> <&nbsp;&nbsp;&nbsp;Previous</a>
 	{% endif %}
@@ -19,32 +17,23 @@
 	<div class="problem-description">
 		<p>{{ problem.description | safe }}</p>
 	</div>
-
 {% endblock %}
 
-
-
 {% block content %}
-
 	{% if problem.solved %}
 		<div id="interact">
 			{% include 'interact.html' %}
 		</div>
 	{% endif %}
-
 {% endblock %}
 
-
 {% block solution %}
-
 	{% if problem.solved %}
 		<div id="solution">
         	<button type="button" id="solution-button">View Solution</button>
 		</div>
 	{% endif %}
-
 {% endblock %}
-
 
 {% block footer %}
 	<div id="footer-link">	
@@ -81,7 +70,6 @@
 {% endblock %}
 
 {% block interactive %}
-	{{ block.super }}
 	<script>
 		$(document).ready(function () {
 		    function calculateResult(number) {
@@ -92,15 +80,12 @@
 		            success: function(response) {
 		            	// fill table cells with results
 		            	var response_data = JSON.parse(response);
-		            	console.log(response_data)
-
 		            	// check for existing entries for this number and remove
 		            	$("#request-table tr td:nth-child(1)").each(function () {
 		            		if (response_data.number == $(this).html()) {
 		            			$(this).closest('tr').css('display', 'None');
 		            		}
 						});
-
 		            	// prepend to top of the table
 		            	$('#headers').after(
 						    '<tr><td class="table-element">' + 
@@ -117,7 +102,6 @@
 
 		    $("#submit-button").click(function(){
 		        var number = $( "#id_calculator" ).val();
-		    	console.log(number);
 		        calculateResult(number);
 	    	});
 		});
