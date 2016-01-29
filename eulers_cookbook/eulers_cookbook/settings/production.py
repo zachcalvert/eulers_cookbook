@@ -92,5 +92,5 @@ HAYSTACK_SEARCH_RESULTS_LIMIT_PER_CATEGORY = 10
 
 ########## SECRET CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = environ['SECRET_KEY']
 ########## END SECRET CONFIGURATION
