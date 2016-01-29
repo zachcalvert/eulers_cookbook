@@ -19,7 +19,7 @@ class HomePageView(TemplateView):
         
         problems = Problem.objects.all()    
 
-        paginator = Paginator(problems, 10)
+        paginator = Paginator(problems, 50)
         page = self.request.GET.get('page')    
 
         try:
