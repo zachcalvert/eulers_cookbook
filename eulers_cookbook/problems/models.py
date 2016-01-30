@@ -8,6 +8,7 @@ class Problem(models.Model):
     link = models.URLField(help_text="URL on Project Euler")
     solved = models.BooleanField(default=False)
     solution = models.CharField(max_length=800, null=True, blank=True) 
+    
     # interactive stuff
     callback_function = models.CharField(max_length=100, null=True, blank=True)   
     output_column_header = models.CharField(max_length=80, null=True, blank=True)

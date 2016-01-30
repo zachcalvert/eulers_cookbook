@@ -34,14 +34,7 @@
 
 					<ul class="nav-menu">
 	                    <li><a href='{% url "about" %}'>About</a></li>
-	                    <li><a href="https://github.com/zachcalvert/euler_cookbook">View on GitHub</a></li>
-	                    <li>
-	                    	{% if user.is_authenticated %}
-							    <a href='{% url "logout" %}'>Logout</a>
-							{% else %}
-							    <a href='{% url "login" %}'>Login</a>
-							{% endif %}
-						</li>
+	                    <li><a href="https://github.com/zachcalvert/eulers_cookbook" target="blank">View on GitHub</a></li>
 	                </ul>
 				</div>
 			</div>

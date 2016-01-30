@@ -104,6 +104,7 @@ ul.nav-menu a:hover {
 
 table {
   border-collapse: collapse;
+  border-radius: 20px;
 }
 
 td, th {
@@ -177,7 +178,7 @@ td.solved {
 }
 
 .problem-description {
-    margin: 0px 10% 0px 8%;
+    margin: 8% 10% 0px 14%;
     padding: 25px 0px 10px;
     font-size: 16px;
     text-align: justify;
