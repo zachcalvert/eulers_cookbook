@@ -13,10 +13,6 @@
     top: 0;
     border-bottom: 1px solid black;
   }
-  
-  #content {
-      margin-top: 67px; /* height of absolutely positioned header */
-  }
 
   .navbar-nav{ 
     margin-top: 67px!important; 
