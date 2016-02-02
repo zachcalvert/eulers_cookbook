@@ -50,6 +50,7 @@
 		{% block description %}{% endblock %}
 
 		{% block content %}
+		<div id="content">
 			<ul class="random-problems navbar-nav">
 			    <li><a href="{% url 'euler_problem' 1|random_problem %}">Random Problem</a></li>
 			    <li><a href="{% url 'euler_problem' 1|random_solved_problem %}">Random Solved Problem</a></li>
@@ -91,6 +92,7 @@
 			        <a href="?page={{ problems.next_page_number }}">Next</a>
 			    {% endif %}
 			 </ul>
+		</div>
 		{% endblock %}
 
 		{% block solution %}{% endblock %}

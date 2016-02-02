@@ -4,16 +4,15 @@
 {% block header %}
 	{{ block.super }}
 	<div class="navbar-nav">
+		{% if problem.number != 1 %}
+			<a class="prev-problem" href="{{ problem | previous_url }}"> <&nbsp;&nbsp;&nbsp;Previous</a>
+		{% endif %}
 		<span class="headerthree">Problem {{ problem.number }}: {{ problem.title}}</span>
+		<a class="next-problem" href="{{ problem | next_url }}">Next &nbsp;&nbsp;></a>
 	</div>
 {% endblock %}	
 
 {% block description %}
-	{% if problem.number != 1 %}
-		<a class="prev-problem" href="{{ problem | previous_url }}"> <&nbsp;&nbsp;&nbsp;Previous</a>
-	{% endif %}
-	<a class="next-problem" href="{{ problem | next_url }}">Next &nbsp;&nbsp;></a>
-
 	<div class="problem-description">
 		<p>{{ problem.description | safe }}</p>
 	</div>
