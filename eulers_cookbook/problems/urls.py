@@ -9,16 +9,19 @@ urlpatterns = [
     	name='euler_problem'),    
 
     # interactive callback urls
-	url(r'^1/multiples_of_three_and_five$', views.ProblemOneView.as_view(), 
+	url(r'^1/multiples_of_three_and_five$', views.MultiplesOfThreeAndFiveView.as_view(), 
 		name='multiples_of_three_and_five'),
 
-	url(r'^2/even_fibonacci_numbers$', views.ProblemTwoView.as_view(), 
+	url(r'^2/even_fibonacci_numbers$', views.EvenFibonacciNumbersView.as_view(), 
 		name='even_fibonacci_numbers'),
 
-	url(r'^3/largest_prime_factor$', views.ProblemThreeView.as_view(), 
+	url(r'^3/largest_prime_factor$', views.LargestPrimeFactorView.as_view(), 
 		name='largest_prime_factor'),
 
-	url(r'^6/sum_square_difference$', views.ProblemSixView.as_view(), 
+	url(r'^4/largest_palindrome_product$', views.LargestPalindromeProductView.as_view(),
+		name='largest_palindrome_product'),
+
+	url(r'^6/sum_square_difference$', views.SumSquareDifferenceView.as_view(), 
 		name='sum_square_difference'),
 
 ]
