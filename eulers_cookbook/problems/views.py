@@ -29,11 +29,7 @@ class HomePageView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
-
-        paginator = Paginator(self.object_list, 15)
-
         context['display'] = self.request.GET.get('display', 'all')
-
         return context
 
 
@@ -42,10 +38,7 @@ class EulerProblemView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(EulerProblemView, self).get_context_data(**kwargs)
-
-        problem = get_object_or_404(Problem, number=kwargs['problem_number'])    
-        context['problem'] = problem
-
+        context['problem'] = get_object_or_404(Problem, number=kwargs['problem_number'])
         return context
 
 
@@ -94,9 +87,9 @@ class MultiplesOfThreeAndFiveView(InteractiveSolutionView):
 
 class EvenFibonacciNumbersView(InteractiveSolutionView):
     """
-    Problem 2: Even Fibonacci xs
+    Problem 2: Even Fibonacci numbers
     """
-    def even_fibonacci_xs(self, x):
+    def even_fibonacci_numbers(self, x):
         a, b = 1, 1
         total = 0
         while a <= x:
@@ -106,7 +99,7 @@ class EvenFibonacciNumbersView(InteractiveSolutionView):
         return total
 
     def calculate_result(self, x):
-        return self.even_fibonacci_xs(x)
+        return self.even_fibonacci_numbers(x)
 
 
 class LargestPrimeFactorView(InteractiveSolutionView):

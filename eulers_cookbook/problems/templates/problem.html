@@ -74,7 +74,7 @@
 		$(document).ready(function () {
 		    function calculateResult(number) {
 		        $.ajax({
-		            url: '{{ problem.callback_function }}' + '?number=' + number,
+		            url: '{{ problem.callback_function }}' + '?x=' + number,
 		            type: 'get',
 		            contentType: 'application/json',
 		            success: function(response) {
@@ -89,7 +89,7 @@
 		            	// prepend to top of the table
 		            	$('#headers').after(
 						    '<tr><td class="table-element">' + 
-						    	response_data.number + '</td><td class="table-element">' +
+						    	response_data.x + '</td><td class="table-element">' +
 						    	response_data.value  + '</td><td class="table-element">' +
 						    	response_data.last_requested  +
 						    '</td></tr>');
