@@ -51,9 +51,38 @@
 
 		{% block content %}
 		<div id="content">
-			<ul class="random-problems navbar-nav">
-			    <li><a href="{% url 'euler_problem' 1|random_problem %}">Random Problem</a></li>
-			    <li><a href="{% url 'euler_problem' 1|random_solved_problem %}">Random Solved Problem</a></li>
+			<ul class="pagination nav navbar-nav">
+				{% if is_paginated %}
+			        <div class="pagination">
+			            <span class="page-links">
+			            	{% if page_obj.number != 1 %}
+								<a href="?page={{ page_obj.1 }}">&lt;&lt;</a>
+							{% else %}
+								<p>&lt;&lt;</p>
+							{% endif %}
+			                {% if page_obj.has_previous %}
+			                    <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+		                    {% else %}
+		                    	<p>&lt;</p>
+			                {% endif %}
+			                <span class="page-current">
+			                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+			                </span>
+			                {% if page_obj.has_next %}
+			                    <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+		                    {% else %}
+		                    	<p>&gt;</p>
+			                {% endif %}
+			                
+			                {% if page_obj.number != page_obj.paginator.num_pages %}
+			                	<a href="?page={{ page_obj.paginator.num_pages }}">&gt;&gt;</a>
+		                	{% else %}
+			                	<p>&gt;&gt;</p>
+		                	{% endif %}
+			            </span>
+			        </div>
+			    {% endif %}
+			</ul>ef="{% url 'euler_problem' 1|random_solved_problem %}">Random Solved Problem</a></li>
 			 </ul>
 
 			 <div class="problems-display-settings">
@@ -74,7 +103,7 @@
 					<td class="table-header">Title</td>
 					<td class="table-header solved">Solved</td>
 				</tr>
-				{% for problem in problems %}
+				{% for problem in problem_list %}
 					<tr>
 						<td class="table-element">{{ problem.number }}</td>
 						<td class="table-element"><a href='{% url "euler_problem" problem.number %}'>{{ problem.title}}</a></td>
@@ -88,22 +117,28 @@
 			</table>
 			
 			<ul class="pagination nav navbar-nav">
-			    {% if problems.has_previous %}
-			        <a href="?page={{ problems.previous_page_number }}">Prev</a>
+				{% if is_paginated %}
+			        <div class="pagination">
+			            <span class="page-links">
+			            	{% if page_obj.number != 1 and page_obj.number != 2 %}
+								<a href="?page={{ page_obj.1 }}">&lt;&lt;</a>
+							{% endif %}
+			                {% if page_obj.has_previous %}
+			                    <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+			                {% endif %}
+			                <span class="page-current">
+			                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+			                </span>
+			                {% if page_obj.has_next %}
+			                    <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+			                {% endif %}
+			                {% if page_obj.number != page_obj.paginator.num_pages %}
+			                	<a href="?page={{ page_obj.paginator.num_pages }}">&gt;&gt;</a>
+		                	{% endif %}
+			            </span>
+			        </div>
 			    {% endif %}
-
-			    {% for page in problems.paginator.page_range %}
-				    {% if problems.number == page %}
-				    	<span id="current-page">{{ page }}</span> |
-				    {% else %}
-				    	<a href="?page={{ page }}">{{ page }}</a> |
-				    {% endif %}
-				{% endfor %}
-
-			    {% if problems.has_next %}
-			        <a href="?page={{ problems.next_page_number }}">Next</a>
-			    {% endif %}
-			 </ul>
+			</ul>
 		</div>
 		{% endblock %}
 
