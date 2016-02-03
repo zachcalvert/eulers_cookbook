@@ -82,8 +82,7 @@
 			            </span>
 			        </div>
 			    {% endif %}
-			</ul>ef="{% url 'euler_problem' 1|random_solved_problem %}">Random Solved Problem</a></li>
-			 </ul>
+			</ul>
 
 			 <div class="problems-display-settings">
                 <form id="problems-non-ajax-form">
@@ -120,20 +119,29 @@
 				{% if is_paginated %}
 			        <div class="pagination">
 			            <span class="page-links">
-			            	{% if page_obj.number != 1 and page_obj.number != 2 %}
+			            	{% if page_obj.number != 1 %}
 								<a href="?page={{ page_obj.1 }}">&lt;&lt;</a>
+							{% else %}
+								<p>&lt;&lt;</p>
 							{% endif %}
 			                {% if page_obj.has_previous %}
 			                    <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+		                    {% else %}
+		                    	<p>&lt;</p>
 			                {% endif %}
 			                <span class="page-current">
 			                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
 			                </span>
 			                {% if page_obj.has_next %}
 			                    <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+		                    {% else %}
+		                    	<p>&gt;</p>
 			                {% endif %}
+			                
 			                {% if page_obj.number != page_obj.paginator.num_pages %}
 			                	<a href="?page={{ page_obj.paginator.num_pages }}">&gt;&gt;</a>
+		                	{% else %}
+			                	<p>&gt;&gt;</p>
 		                	{% endif %}
 			            </span>
 			        </div>
