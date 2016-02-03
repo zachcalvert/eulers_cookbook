@@ -5,43 +5,34 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.template import TemplateDoesNotExist
 from django.template.loader import get_template
-from django.views.generic import TemplateView, View
+from django.views.generic import TemplateView, View, ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from problems.models import Problem
 
 
-class HomePageView(TemplateView):
+class HomePageView(ListView):
     template_name = 'base.html'
+    paginate_by = 15
+
+    def get_queryset(self):
+        display = self.request.GET.get('display', 'all')
+        
+        if display == 'solved':
+            queryset = Problem.objects.filter(solved=True)
+        elif display == 'unsolved':
+            queryset = Problem.objects.filter(solved=False)
+        else:
+            queryset = Problem.objects.all()
+
+        return queryset
 
     def get_context_data(self, *args, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
 
-        display = self.request.GET.get('display', 'all')
+        paginator = Paginator(self.object_list, 15)
 
-        if display == 'solved':
-            problems = Problem.objects.filter(solved=True)
-        elif display == 'unsolved':
-            problems = Problem.objects.filter(solved=False)
-        else:
-            problems = Problem.objects.all()
-
-
-        paginator = Paginator(problems, 50)
-        page = self.request.GET.get('page')    
-
-        try:
-            problems = paginator.page(page)
-        except PageNotAnInteger:
-            # If page is not an integer, deliver first page.
-            problems = paginator.page(1)
-        except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-            problems = paginator.page(paginator.num_pages)    
-
-        context['paginator'] = paginator
-        context['problems'] = problems
-        context['display'] = display
+        context['display'] = self.request.GET.get('display', 'all')
 
         return context
 
