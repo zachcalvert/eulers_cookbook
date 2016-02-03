@@ -51,7 +51,7 @@
 
 		{% block content %}
 		<div id="content">
-			<ul class="pagination nav navbar-nav">
+			<ul id="top-nav-bar" class="pagination nav navbar-nav">
 				{% if is_paginated %}
 			        <div class="pagination">
 			            <span class="page-links">
@@ -115,7 +115,7 @@
 				{% endfor %}
 			</table>
 			
-			<ul class="pagination nav navbar-nav">
+			<ul class="pagination nav navbar-nav bottom">
 				{% if is_paginated %}
 			        <div class="pagination">
 			            <span class="page-links">
