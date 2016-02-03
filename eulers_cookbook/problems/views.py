@@ -16,8 +16,16 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
-        
-        problems = Problem.objects.all()    
+
+        display = self.request.GET.get('display', 'all')
+
+        if display == 'solved':
+            problems = Problem.objects.filter(solved=True)
+        elif display == 'unsolved':
+            problems = Problem.objects.filter(solved=False)
+        else:
+            problems = Problem.objects.all()
+
 
         paginator = Paginator(problems, 50)
         page = self.request.GET.get('page')    
@@ -33,6 +41,7 @@ class HomePageView(TemplateView):
 
         context['paginator'] = paginator
         context['problems'] = problems
+        context['display'] = display
 
         return context
 

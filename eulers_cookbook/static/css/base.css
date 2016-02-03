@@ -81,6 +81,10 @@ ul.nav-menu a:hover {
   margin: 0 20px;
 }
 
+.problems-display-settings {
+  float: right;
+}
+
 .random-problems a {
   text-decoration: none;
   padding: 15px;

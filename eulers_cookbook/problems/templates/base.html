@@ -56,6 +56,18 @@
 			    <li><a href="{% url 'euler_problem' 1|random_solved_problem %}">Random Solved Problem</a></li>
 			 </ul>
 
+			 <div class="problems-display-settings">
+                <form id="problems-non-ajax-form">
+                    <label for="problems-display-mode">Show:</label>
+                    <select name="display" id="problems-sort-mode" onchange="this.form.submit()">
+                        <option name="all" value="all" {% if display == 'all' %} selected {% endif %}>All</option>
+                        <option name="solved" value="solved" {% if display == 'solved' %} selected {% endif %}>Solved</option>
+                        <option name="unsolved" value="unsolved" {% if display == 'unsolved' %} selected {% endif %}>Unsolved</option>
+                    </select>
+                    <br/>
+                </form>
+            </div>
+
 			<table class="table-of-contents">
 				<tr>
 					<td class="table-header">#</td>
