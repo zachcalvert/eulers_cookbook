@@ -14,8 +14,9 @@
     border-bottom: 1px solid black;
   }
 
-  .navbar-nav{ 
-    margin-top: 67px!important; 
+  #top-nav-bar { 
+    margin-top: 67px!important;
+    border-top: none;
   }
 
    /* search */
