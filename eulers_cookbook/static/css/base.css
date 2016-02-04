@@ -7,6 +7,11 @@ body {
   font-size: 16px;
 }
 
+*:focus {
+    outline: 0;
+    outline: none;
+}
+
 .page-content {
     margin: 0;
 }
@@ -20,6 +25,7 @@ body {
     background:  #FFF;
     margin: 0px 0px 0px 0px;
     height: 66px;
+    text-align: center;
 }
 
 #site-header-logo {
@@ -36,10 +42,51 @@ body {
     color: #000;
 }
 
+#site-search {
+  display: inline-block;
+  margin-top: 10px; 
+  margin-left: 160px;
+}
+
+#search-form fieldset {
+  border: none;
+}
+
+#search-form input[type="text"] {
+    width: 300px;
+    height: 30px;
+    font-size: 18px;
+    border: 1px solid black;
+    color: #808080;
+}
+
+#search-form button[type="submit"] {
+    width: 45px;
+    height: 30px;
+    border: 1px solid black;
+    cursor: pointer;
+    background: #333333;
+    border-radius: 0px 10px 10px 0px;
+    color: lightgrey;
+    margin-left: -5px;
+    padding-top: 6px;
+}
+
+#search-results {
+    padding: 50px 40px 0;
+}
+
+#site-header-menu {
+  display: inline-block;
+  float: right;
+  margin-right: 30px;
+}
+
 ul.nav-menu {
     float: right;
     margin: 40px 0px 0 0;
     font-size: 17px;
+    padding: 0px;
 }
 
 ul.nav-menu li {
@@ -89,6 +136,7 @@ ul.nav-menu a:hover {
 .problems-display-settings {
   float: right;
   padding-top: 10px;
+  margin-right: 40px;
 }
 
 .random-problems a {
@@ -138,7 +186,7 @@ td.solved {
 }
 
 .table-of-contents {
-    margin: 05%;
+    margin: 5%;
     width: 90%;
 }
 
@@ -155,13 +203,8 @@ td.solved {
     margin: 0 10px;
 }
 
-/* login page */
-#login-form {
-    padding: 20px;
-}
-
-#login-button {
-    margin: 10px;
+.search-table {
+  margin: 0 5%;
 }
 
 

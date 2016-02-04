@@ -25,8 +25,17 @@
 				<div id="site-header-logo">
 					<a href='{% url "site_home" %}'><img id="site-header-img" src="http://i.imgur.com/bV1fJ34.png" /></a>
 				</div>
+
+				<div id="site-search">
+				    <form id="search-form" method="get" action="{% url 'haystack_search' %}">
+				        <fieldset>
+				            <input type="text" value="{{ request.GET.q }}" name="q" placeholder="Search Terms..">
+				            <button type="submit">Go</button>
+				        </fieldset>
+				    </form>
+				</div>
+
 				<div id="site-header-menu">
-				    
 				    <ul id="mobile-nav-icons">
 				        <li id="top-nav-menu"><a href="javascript:;"><i class="fa fa-bars"></i></a></li>
 				        <li id="top-nav-search"><a href="javascript:;"><i class="fa fa-search"></i></a></li>
@@ -165,6 +174,7 @@
 		{% endblock %}
 
 		{% block footer %}
+			<div id="footer-link"></div>
 		{% endblock %}
 
         {% block js %}
@@ -187,6 +197,7 @@
 		            });
 
                     $('#top-nav-search').click(function () {
+                    	$('html, body').animate({ scrollTop: 0 }, 'fast');
 		                // get template
 		                var search_template = $('#search-overlay-template').html();
 		                // load it in
@@ -212,7 +223,7 @@
 		    <script type="text/html" id="search-overlay-template">
 		        <div id="search-overlay">
 		            <div class="search-form-wrapper">
-		                <form class="search-form" action="{% url 'site_home' %}" role="search" method="GET">
+		                <form class="search-form" action="{% url 'haystack_search' %}" role="search" method="GET">
 		                    <input type="text" name="q" class="search-text" autocomplete="off" placeholder="Search Terms..">
 		                    <button type="submit">Go</button>
 		                </form>
