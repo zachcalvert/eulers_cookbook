@@ -121,7 +121,9 @@
 				{% for problem in problem_list %}
 					<tr>
 						<td class="table-element">{{ problem.number }}</td>
-						<td class="table-element"><a href='{% url "euler_problem" problem.number %}'>{{ problem.title}}</a></td>
+						<td class="table-element">
+							<a href='{% url "euler_problem" problem.number %}'>{{ problem.title}}</a>
+						</td>
 						<td class="solved">
 							{% if problem.solved %}
 								&#x2713;

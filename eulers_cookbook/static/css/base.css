@@ -45,7 +45,7 @@ body {
 #site-search {
   display: inline-block;
   margin-top: 10px; 
-  margin-left: 160px;
+  margin-left: 148px;
 }
 
 #search-form fieldset {
@@ -58,6 +58,7 @@ body {
     font-size: 18px;
     border: 1px solid black;
     color: #808080;
+    padding-left: 5px;
 }
 
 #search-form button[type="submit"] {
@@ -190,10 +191,10 @@ td.solved {
     width: 90%;
 }
 
-.table-of-contents a {
+.table-of-contents a, .table-of-contents a:visited {
     color: #000026;
-    text-decoration: none!important;
 }
+
 
 .table-of-contents a:hover {
     color: #000026;
@@ -206,7 +207,6 @@ td.solved {
 .search-table {
   margin: 0 5%;
 }
-
 
 /* problem template */
 
