@@ -65,7 +65,7 @@ ul.nav-menu a:hover {
     background: #E1E3E4;
     text-align: center;
     width: 101%;
-    margin: 0px 0 20px 0!important;
+    margin: 0px 0 0px 0!important;
     padding: 13px;
     border-radius: 0!important;
     color: #000026;;
@@ -98,7 +98,7 @@ ul.nav-menu a:hover {
 }
 
 .page-current {
-  padding: 0 10px;
+  padding: 0 25px;
 }
 
 .pagination p {

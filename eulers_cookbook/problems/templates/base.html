@@ -125,38 +125,39 @@
 			{% block solution %}{% endblock %}
 			
 			{% block bottomnavbar %}
-				<ul class="pagination nav navbar-nav bottom">
+				<ul class="pagination nav navbar-nav">
 					{% if is_paginated %}
 				        <div class="pagination">
 				            <span class="page-links">
 				            	{% if page_obj.number != 1 %}
-									<a href="?page={{ page_obj.1 }}">&lt;&lt;</a>
+									<a href="?page={{ page_obj.1 }}"<i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i></a>
 								{% else %}
-									<p>&lt;&lt;</p>
+									<p><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i></p>
 								{% endif %}
+
 				                {% if page_obj.has_previous %}
-				                    <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+				                    <a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-chevron-left"></i></a>
 			                    {% else %}
-			                    	<p>&lt;</p>
+			                    	<p><i class="fa fa-chevron-left"></i></p>
 				                {% endif %}
 				                <span class="page-current">
 				                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
 				                </span>
 				                {% if page_obj.has_next %}
-				                    <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+				                    <a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-chevron-right"></i></a>
 			                    {% else %}
-			                    	<p>&gt;</p>
+			                    	<p><i class="fa fa-chevron-right"></i></p>
 				                {% endif %}
 				                
 				                {% if page_obj.number != page_obj.paginator.num_pages %}
-				                	<a href="?page={{ page_obj.paginator.num_pages }}">&gt;&gt;</a>
+				                	<a href="?page={{ page_obj.paginator.num_pages }}"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
 			                	{% else %}
-				                	<p>&gt;&gt;</p>
+				                	<p><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></p>
 			                	{% endif %}
 				            </span>
 				        </div>
 			        {% else %}
-			        	Page 1 of 1
+						Page 1 of 1
 				    {% endif %}
 				</ul>
 			{% endblock %}
