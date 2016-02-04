@@ -189,4 +189,14 @@
   .problems-display-settings {
     font-size: 16px;
   }
+
+}
+
+/* ----------- tablet ----------- */
+@media screen and (max-width: 600px) {
+
+  #site-header-menu {
+    margin-right: 0px;
+  }
+  
 }
