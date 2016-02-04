@@ -68,12 +68,12 @@
 		{% endif %}
 	{% endblock %}
 
-{% endblock %}
+	{% block footer %}
+		<div id="footer-link">	
+			<a href="{{ problem.link }}">view on project euler</a>
+		</div>
+	{% endblock %}
 
-{% block footer %}
-	<div id="footer-link">	
-		<a href="{{ problem.link }}">view on project euler</a>
-	</div>
 {% endblock %}
 
 {% block extra_body_content %}
