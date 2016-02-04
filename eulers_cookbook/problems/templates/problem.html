@@ -1,37 +1,38 @@
 {% extends 'base.html' %}
 {% load euler_tags %}
-	
-{% block header %}
-	{{ block.super }}
-	<div class="navbar-nav">
-		{% if problem.number != 1 %}
-			<a class="prev-problem" href="{{ problem | previous_url }}"> <&nbsp;&nbsp;&nbsp;Previous</a>
-		{% endif %}
-		<span class="headerthree">Problem {{ problem.number }}: {{ problem.title}}</span>
-		<a class="next-problem" href="{{ problem | next_url }}">Next &nbsp;&nbsp;></a>
-	</div>
-{% endblock %}	
-
-{% block description %}
-	<div class="problem-description">
-		<p>{{ problem.description | safe }}</p>
-	</div>
-{% endblock %}
 
 {% block content %}
+
+	{% block topnavbar %}
+		<div id="top-nav-bar" class="navbar-nav">
+			{% if problem.number != 1 %}
+				<a class="prev-problem" href="{{ problem | previous_url }}"> <&nbsp;Previous</a>
+			{% endif %}
+			<span class="problem-header-text">Problem {{ problem.number }}: {{ problem.title}}</span>
+			<a class="next-problem" href="{{ problem | next_url }}">Next &nbsp;></a>
+		</div>
+	{% endblock %}
+
+	{% block description %}
+		<div class="problem-description">
+			<p>{{ problem.description | safe }}</p>
+		</div>
+	{% endblock %}
+
 	{% if problem.solved %}
 		<div id="interact">
 			{% include 'interact.html' %}
 		</div>
 	{% endif %}
-{% endblock %}
 
-{% block solution %}
-	{% if problem.solved %}
-		<div id="solution">
-        	<button type="button" id="solution-button">View Solution</button>
-		</div>
-	{% endif %}
+	{% block solution %}
+		{% if problem.solved %}
+			<div id="solution">
+	        	<button type="button" id="solution-button">View Solution</button>
+			</div>
+		{% endif %}
+	{% endblock %}
+
 {% endblock %}
 
 {% block footer %}

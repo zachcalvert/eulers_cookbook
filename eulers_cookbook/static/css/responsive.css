@@ -164,13 +164,23 @@
 
 }
 
-
-
-/* -----------  ----------- */
+/* ----------- tablet ----------- */
 @media screen and (max-width: 767px) {
   
   body {
       font-size: 20px;
+  }
+
+  .prev-problem {
+    font-size: 16px;
+  }
+
+  .next-problem {
+    font-size: 16px;
+  }
+
+  .problem-header-text {
+    font-size: 18px;
   }
 
   #logout {

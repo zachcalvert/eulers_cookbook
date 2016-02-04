@@ -47,56 +47,60 @@
 			{% endif %}
 		{% endblock %}
 
-		{% block description %}{% endblock %}
-
 		{% block content %}
 		<div id="content">
-			<ul id="top-nav-bar" class="pagination nav navbar-nav">
-				{% if is_paginated %}
-			        <div class="pagination">
-			            <span class="page-links">
-			            	{% if page_obj.number != 1 %}
-								<a href="?page={{ page_obj.1 }}">&lt;&lt;</a>
-							{% else %}
-								<p>&lt;&lt;</p>
-							{% endif %}
-			                {% if page_obj.has_previous %}
-			                    <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
-		                    {% else %}
-		                    	<p>&lt;</p>
-			                {% endif %}
-			                <span class="page-current">
-			                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-			                </span>
-			                {% if page_obj.has_next %}
-			                    <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
-		                    {% else %}
-		                    	<p>&gt;</p>
-			                {% endif %}
-			                
-			                {% if page_obj.number != page_obj.paginator.num_pages %}
-			                	<a href="?page={{ page_obj.paginator.num_pages }}">&gt;&gt;</a>
-		                	{% else %}
-			                	<p>&gt;&gt;</p>
-		                	{% endif %}
-			            </span>
-			        </div>
-		        {% else %}
-					Page 1 of 1
-			    {% endif %}
-			</ul>
+			{% block topnavbar %}
+				<ul id="top-nav-bar" class="pagination nav navbar-nav">
+					{% if is_paginated %}
+				        <div class="pagination">
+				            <span class="page-links">
+				            	{% if page_obj.number != 1 %}
+									<a href="?page={{ page_obj.1 }}">&lt;&lt;</a>
+								{% else %}
+									<p>&lt;&lt;</p>
+								{% endif %}
+				                {% if page_obj.has_previous %}
+				                    <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+			                    {% else %}
+			                    	<p>&lt;</p>
+				                {% endif %}
+				                <span class="page-current">
+				                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+				                </span>
+				                {% if page_obj.has_next %}
+				                    <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+			                    {% else %}
+			                    	<p>&gt;</p>
+				                {% endif %}
+				                
+				                {% if page_obj.number != page_obj.paginator.num_pages %}
+				                	<a href="?page={{ page_obj.paginator.num_pages }}">&gt;&gt;</a>
+			                	{% else %}
+				                	<p>&gt;&gt;</p>
+			                	{% endif %}
+				            </span>
+				        </div>
+			        {% else %}
+						Page 1 of 1
+				    {% endif %}
+				</ul>
+			{% endblock %}
 
-			 <div class="problems-display-settings">
-                <form id="problems-non-ajax-form">
-                    <label for="problems-display-mode">Show:</label>
-                    <select name="display" id="problems-sort-mode" onchange="this.form.submit()">
-                        <option name="all" value="all" {% if display == 'all' %} selected {% endif %}>All</option>
-                        <option name="solved" value="solved" {% if display == 'solved' %} selected {% endif %}>Solved</option>
-                        <option name="unsolved" value="unsolved" {% if display == 'unsolved' %} selected {% endif %}>Unsolved</option>
-                    </select>
-                    <br/>
-                </form>
-            </div>
+			{% block description %}{% endblock %}
+
+			{% block display_settings %}
+				<div class="problems-display-settings">
+	                <form id="problems-non-ajax-form">
+	                    <label for="problems-display-mode">Show:</label>
+	                    <select name="display" id="problems-sort-mode" onchange="this.form.submit()">
+	                        <option name="all" value="all" {% if display == 'all' %} selected {% endif %}>All</option>
+	                        <option name="solved" value="solved" {% if display == 'solved' %} selected {% endif %}>Solved</option>
+	                        <option name="unsolved" value="unsolved" {% if display == 'unsolved' %} selected {% endif %}>Unsolved</option>
+	                    </select>
+	                    <br/>
+	                </form>
+	            </div>
+	        {% endblock %}
 
 			<table class="table-of-contents">
 				<tr>
@@ -116,45 +120,47 @@
 					</tr>
 				{% endfor %}
 			</table>
+
+			{% block solution %}{% endblock %}
 			
-			<ul class="pagination nav navbar-nav bottom">
-				{% if is_paginated %}
-			        <div class="pagination">
-			            <span class="page-links">
-			            	{% if page_obj.number != 1 %}
-								<a href="?page={{ page_obj.1 }}">&lt;&lt;</a>
-							{% else %}
-								<p>&lt;&lt;</p>
-							{% endif %}
-			                {% if page_obj.has_previous %}
-			                    <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
-		                    {% else %}
-		                    	<p>&lt;</p>
-			                {% endif %}
-			                <span class="page-current">
-			                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-			                </span>
-			                {% if page_obj.has_next %}
-			                    <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
-		                    {% else %}
-		                    	<p>&gt;</p>
-			                {% endif %}
-			                
-			                {% if page_obj.number != page_obj.paginator.num_pages %}
-			                	<a href="?page={{ page_obj.paginator.num_pages }}">&gt;&gt;</a>
-		                	{% else %}
-			                	<p>&gt;&gt;</p>
-		                	{% endif %}
-			            </span>
-			        </div>
-		        {% else %}
-		        	Page 1 of 1
-			    {% endif %}
-			</ul>
+			{% block bottomnavbar %}
+				<ul class="pagination nav navbar-nav bottom">
+					{% if is_paginated %}
+				        <div class="pagination">
+				            <span class="page-links">
+				            	{% if page_obj.number != 1 %}
+									<a href="?page={{ page_obj.1 }}">&lt;&lt;</a>
+								{% else %}
+									<p>&lt;&lt;</p>
+								{% endif %}
+				                {% if page_obj.has_previous %}
+				                    <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+			                    {% else %}
+			                    	<p>&lt;</p>
+				                {% endif %}
+				                <span class="page-current">
+				                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+				                </span>
+				                {% if page_obj.has_next %}
+				                    <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+			                    {% else %}
+			                    	<p>&gt;</p>
+				                {% endif %}
+				                
+				                {% if page_obj.number != page_obj.paginator.num_pages %}
+				                	<a href="?page={{ page_obj.paginator.num_pages }}">&gt;&gt;</a>
+			                	{% else %}
+				                	<p>&gt;&gt;</p>
+			                	{% endif %}
+				            </span>
+				        </div>
+			        {% else %}
+			        	Page 1 of 1
+				    {% endif %}
+				</ul>
+			{% endblock %}
 		</div>
 		{% endblock %}
-
-		{% block solution %}{% endblock %}
 
 		{% block footer %}
 		{% endblock %}
