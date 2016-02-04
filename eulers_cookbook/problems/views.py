@@ -50,7 +50,7 @@ class InteractiveSolutionView(View):
     """
 
     def get_current_time(self):
-        now = datetime.now().strftime('%m-%d %H:%M:%S')
+        return datetime.now().strftime('%m-%d %H:%M:%S')
 
     def get(self, request):
         x = request.GET.get('x', None)    
