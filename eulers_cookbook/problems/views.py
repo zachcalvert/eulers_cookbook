@@ -11,7 +11,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from problems.models import Problem
 
 
-class HomePageView(ListView):
+class ProblemListView(ListView):
     template_name = 'base.html'
     paginate_by = 15
 
@@ -28,7 +28,7 @@ class HomePageView(ListView):
         return queryset
 
     def get_context_data(self, *args, **kwargs):
-        context = super(HomePageView, self).get_context_data(**kwargs)
+        context = super(ProblemListView, self).get_context_data(**kwargs)
         context['display'] = self.request.GET.get('display', 'all')
         return context
 
