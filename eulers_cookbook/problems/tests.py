@@ -6,13 +6,13 @@ from django.test import TestCase, Client
 import views
 
 
-class ProblemOneTest(TestCase):
+class MultiplesOfThreeAndFiveTest(TestCase):
     """
     Ensure that the Multiples of Three and Five problem works
     """
 
     def setUp(self):
-        self.view = views.ProblemOneView()
+        self.view = views.MultiplesOfThreeAndFiveView()
 
     def test_multiples_of_three_and_five(self):
         """
@@ -25,23 +25,23 @@ class ProblemOneTest(TestCase):
         Verify that the interactive url works correctly
         """
         client = Client()
-        url = reverse('multiples_of_three_and_five') + '?number=10'
+        url = reverse('multiples_of_three_and_five') + '?x=10'
         response = client.get(url)
 
         self.assertEqual(response.status_code, 200)
 
         response_data = json.loads(response.content)
-        self.assertEqual(response_data['number'], 10)
+        self.assertEqual(response_data['x'], 10)
         self.assertEqual(response_data['value'], 23)
 
 
-class ProblemTwoTest(TestCase):
+class EvenFibonacciNumbersTest(TestCase):
     """
-    Ensure that the Multiples of Three and Five problem works
+    Ensure that the Even Fibonacci Numbers problem works
     """
 
     def setUp(self):
-        self.view = views.ProblemTwoView()
+        self.view = views.EvenFibonacciNumbersView()
 
     def test_even_fibonacci_numbers(self):
         """
@@ -55,23 +55,23 @@ class ProblemTwoTest(TestCase):
         Verify that the interactive url works correctly
         """
         client = Client()
-        url = reverse('even_fibonacci_numbers') + '?number=100'
+        url = reverse('even_fibonacci_numbers') + '?x=100'
         response = client.get(url)
 
         self.assertEqual(response.status_code, 200)
 
         response_data = json.loads(response.content)
-        self.assertEqual(response_data['number'], 100)
+        self.assertEqual(response_data['x'], 100)
         self.assertEqual(response_data['value'], 2+8+34)
 
 
-class ProblemThreeTest(TestCase):
+class LargestPrimeFactorTest(TestCase):
     """
-    Ensure that theLargest Prime Factor problem works
+    Ensure that the Largest Prime Factor problem works
     """
 
     def setUp(self):
-        self.view = views.ProblemThreeView()
+        self.view = views.LargestPrimeFactorView()
 
     def test_largest_prime_factor(self):
         """
@@ -84,23 +84,53 @@ class ProblemThreeTest(TestCase):
         Verify that the interactive url works correctly
         """
         client = Client()
-        url = reverse('largest_prime_factor') + '?number=13195'
+        url = reverse('largest_prime_factor') + '?x=13195'
         response = client.get(url)
 
         self.assertEqual(response.status_code, 200)
 
         response_data = json.loads(response.content)
-        self.assertEqual(response_data['number'], 13195)
+        self.assertEqual(response_data['x'], 13195)
         self.assertEqual(response_data['value'], 29)
 
 
-class ProblemSixTest(TestCase):
+class LargestPalindromeProductTest(TestCase):
+    """
+    Ensure that the Largest Palindrome Product problem works
+    """
+
+    def setUp(self):
+        self.view = views.LargestPalindromeProductView()
+
+    def test_largest_prime_factor(self):
+        """
+        The largest palindrome product of any two two digit numbers is 9009 (given)
+        """
+        self.assertEqual(self.view.largest_palindrome_product(10, 99), 9009)
+
+    def test_interactive_endpoint(self):
+        """
+        Verify that the interactive url works correctly
+        """
+        client = Client()
+        url = reverse('largest_palindrome_product') + '?x=10&y=99'
+        response = client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+
+        response_data = json.loads(response.content)
+        self.assertEqual(response_data['x'], 10)
+        self.assertEqual(int(response_data['y']), 99)
+        self.assertEqual(response_data['value'], 9009)
+
+
+class SumSquareDifferenceTest(TestCase):
     """
     Ensure that the Sum Square Difference problem works
     """
 
     def setUp(self):
-        self.view = views.ProblemSixView()    
+        self.view = views.SumSquareDifferenceView()    
 
     def test_square_of_sums(self):
         """
@@ -125,13 +155,13 @@ class ProblemSixTest(TestCase):
         Verify that the ineteractive url works correctly
         """
         client = Client()
-        url = reverse('sum_square_difference') + '?number=10'
+        url = reverse('sum_square_difference') + '?x=10'
         response = client.get(url)
 
         self.assertEqual(response.status_code, 200)
 
         response_data = json.loads(response.content)
-        self.assertEqual(response_data['number'], 10)
+        self.assertEqual(response_data['x'], 10)
         self.assertEqual(response_data['value'], 2640)
 
 
