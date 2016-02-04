@@ -171,20 +171,11 @@
       font-size: 20px;
   }
 
-  .prev-problem {
-    font-size: 20px;
-  }
-
-  .next-problem {
-    font-size: 20px;
-  }
-
   .problem-header-text {
     font-size: 14px;
   }
 
-  #logout {
-      float:none;
+  .problems-display-settings {
+    font-size: 16px;
   }
-
 }

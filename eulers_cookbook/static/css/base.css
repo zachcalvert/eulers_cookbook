@@ -89,6 +89,7 @@ ul.nav-menu a:hover {
 
 .problems-display-settings {
   float: right;
+  padding-top: 10px;
 }
 
 .random-problems a {
