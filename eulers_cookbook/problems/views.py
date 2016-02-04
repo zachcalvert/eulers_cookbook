@@ -63,6 +63,7 @@ class InteractiveSolutionView(View):
         except ValueError:
             return HttpResponse('Please provide an integer value.', status=400)
 
+        # check for multiple inputes
         y = self.request.GET.get('y', None)
 
         if y:
@@ -127,6 +128,9 @@ class LargestPrimeFactorView(InteractiveSolutionView):
 
 
 class LargestPalindromeProductView(InteractiveSolutionView):
+    """
+    Problem 4: Largest Palindrome Product
+    """
 
     def is_palindrome(self, x):
         return str(x) == str(x)[::-1]    
