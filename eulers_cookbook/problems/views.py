@@ -63,13 +63,21 @@ class InteractiveSolutionView(View):
         except ValueError:
             return HttpResponse('Please provide an integer value.', status=400)
 
-        value = self.calculate_result(x) 
+        y = self.request.GET.get('y', None)
+
+        if y:
+            value = self.calculate_result(x, int(y)) 
+        else:
+            value = self.calculate_result(x) 
 
         content = {
             'x': x,
             'value': value,
             'last_requested': self.get_current_time()
         }
+
+        if y:
+            content['y'] = y
 
         return HttpResponse(json.dumps(content))
 
@@ -120,10 +128,10 @@ class LargestPrimeFactorView(InteractiveSolutionView):
 
 class LargestPalindromeProductView(InteractiveSolutionView):
 
-    def is_palindrome(x):
+    def is_palindrome(self, x):
         return str(x) == str(x)[::-1]    
 
-    def largest_palindrome_product(minimum, maximum):
+    def largest_palindrome_product(self, minimum, maximum):
         """
         Problem 4: Largest Palidrome Product
         """
@@ -132,15 +140,15 @@ class LargestPalindromeProductView(InteractiveSolutionView):
         y_in = 0
         for x in range(maximum, minimum, -1):
             for y in range(maximum,minimum, -1):
-                if is_palindrome(x*y):
+                if self.is_palindrome(x*y):
                     if x*y > z:
                         z = x*y
                         x_in = x
                         y_in = y        
 
-        return '{0} ({1}*{2})'.format(z, x_in, y_in)
+        return z
 
-    def calculate_result(self, n):
+    def calculate_result(self, x, y):
         return self.largest_palindrome_product(x, y)
 
 
@@ -155,7 +163,7 @@ class SumSquareDifferenceView(InteractiveSolutionView):
     def sum_of_squares(self, x):
         return sum([ i * i for i in xrange(1, x + 1) ])  
 
-    def calculate_result(self, n):
+    def calculate_result(self, x):
         """
         Problem 4: Largest Palidrome Product
         """

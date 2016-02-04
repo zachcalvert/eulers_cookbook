@@ -21,7 +21,42 @@
 
 	{% if problem.solved %}
 		<div id="interact">
-			{% include 'interact.html' %}
+			<div id="input-area">
+				{% if problem.num_inputs == 2 %}
+					<p>Enter any 2 numbers to see it in action!</p>
+				{% else %}
+					<p>Enter any number to see it in action!</p>
+				{% endif %}
+				<input type="text" id="interactive_input" value="">
+				{% if problem.num_inputs == 2 %}
+					<input type="text" id="interactive_input_2" value="">
+				{% endif %}
+				<input type="submit" id="submit-button" value="Calculate">
+			</div>
+
+			<div id="output-area">
+				<table id="request-table" align="center">
+					<caption>Log</caption>
+					<tbody>
+						<tr id="headers">
+							<td class="table-header">x</td>
+							{% if problem.num_inputs == 2 %}
+								<td class="table-header">y</td>
+							{% endif %}
+							<td class="table-header">{{ problem.output_column_header }}</td>
+							<td class="table-header">Timestamp</td>
+						</tr>
+						<tr id="placeholders">
+							<td id="number-result" class="table-element">&nbsp;</td>
+							{% if problem.num_inputs == 2 %}
+								<td class="table-header"></td>
+							{% endif %}
+							<td id="value-result" class="table-element">&nbsp;</td>
+							<td id="time-result" class="table-element">&nbsp;</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	{% endif %}
 
@@ -73,9 +108,9 @@
 {% block interactive %}
 	<script>
 		$(document).ready(function () {
-		    function calculateResult(number) {
+		    function calculateResult(x) {
 		        $.ajax({
-		            url: '{{ problem.callback_function }}' + '?x=' + number,
+		            url: '{{ problem.callback_function }}' + '?x=' + x,
 		            type: 'get',
 		            contentType: 'application/json',
 		            success: function(response) {
@@ -83,7 +118,7 @@
 		            	var response_data = JSON.parse(response);
 		            	// check for existing entries for this number and remove
 		            	$("#request-table tr td:nth-child(1)").each(function () {
-		            		if (response_data.number == $(this).html()) {
+		            		if (response_data.x == $(this).html()) {
 		            			$(this).closest('tr').css('display', 'None');
 		            		}
 						});
@@ -101,9 +136,46 @@
 		        });
 		    };
 
+		    function calculateResultTwoInputs(x, y) {
+		        $.ajax({
+		            url: '{{ problem.callback_function }}' + '?x=' + x + '&y=' + y,
+		            type: 'get',
+		            contentType: 'application/json',
+		            success: function(response) {
+		            	// fill table cells with results
+		            	var response_data = JSON.parse(response);
+		            	// check for existing entries for these two numbers and remove
+		            	$("#request-table tr td:nth-child(1)").each(function () {
+		            		if (response_data.x == $(this).html() && response_data.y == $(this).html()) {
+		            			$(this).closest('tr').css('display', 'None');
+		            		}
+						});
+		            	// prepend to top of the table
+		            	$('#headers').after(
+						    '<tr><td class="table-element">' + 
+						    	response_data.x + '</td><td class="table-element">' +
+						    	response_data.y + '</td><td class="table-element">' +
+						    	response_data.value  + '</td><td class="table-element">' +
+						    	response_data.last_requested  +
+						    '</td></tr>');
+		            },
+		            error: function (jqXhr, textStatus, errorThrown) {
+		                console.log(errorThrown);
+		            }
+		        });
+		    };
+
 		    $("#submit-button").click(function(){
-		        var number = $( "#id_calculator" ).val();
-		        calculateResult(number);
+		    	if (document.getElementById('interactive_input_2')) {
+		    		// we have two inputs
+		        	var x = $( "#interactive_input" ).val();
+		        	var y = $( "#interactive_input_2" ).val();
+		        	calculateResultTwoInputs(x, y)
+
+		        } else {
+		        	var x = $( "#interactive_input" ).val();
+		        	calculateResult(x);
+		        }
 	    	});
 		});
 	</script>
