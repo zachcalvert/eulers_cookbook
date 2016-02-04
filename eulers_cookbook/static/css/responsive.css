@@ -177,10 +177,6 @@
 
 /* ----------- tablet ----------- */
 @media screen and (max-width: 767px) {
-  
-  body {
-      font-size: 20px;
-  }
 
   .problem-header-text {
     font-size: 14px;
