@@ -6,10 +6,10 @@
 	{% block topnavbar %}
 		<div id="top-nav-bar" class="navbar-nav">
 			{% if problem.number != 1 %}
-				<a class="prev-problem" href="{{ problem | previous_url }}"> <&nbsp;Previous</a>
+				<a class="prev-problem" href="{{ problem | previous_url }}"><i class="fa fa-chevron-left"></i></a>
 			{% endif %}
 			<span class="problem-header-text">Problem {{ problem.number }}: {{ problem.title}}</span>
-			<a class="next-problem" href="{{ problem | next_url }}">Next &nbsp;></a>
+			<a class="next-problem" href="{{ problem | next_url }}"><i class="fa fa-chevron-right"></i></a>
 		</div>
 	{% endblock %}
 

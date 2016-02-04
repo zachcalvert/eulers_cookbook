@@ -172,15 +172,15 @@
   }
 
   .prev-problem {
-    font-size: 16px;
+    font-size: 20px;
   }
 
   .next-problem {
-    font-size: 16px;
+    font-size: 20px;
   }
 
   .problem-header-text {
-    font-size: 18px;
+    font-size: 14px;
   }
 
   #logout {
