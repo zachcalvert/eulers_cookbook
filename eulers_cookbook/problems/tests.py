@@ -124,6 +124,31 @@ class LargestPalindromeProductTest(TestCase):
         self.assertEqual(response_data['value'], 9009)
 
 
+class SmallestMultipleTest(TestCase):
+    """
+    Ensure that the Smallest Multiple problem works
+    """
+
+    def setUp(self):
+        self.view = views.SmallestMultipleView()    
+
+    def test_smallest_multiple(self):
+        """
+        the lcm of 4 and 5 is 20 
+        """
+        self.assertEqual(self.view.smallest_multiple(4, 5), 20)
+        """
+        the lcm of 4 and 10 is 20
+        """
+        self.assertEqual(self.view.smallest_multiple(4, 10), 20)
+
+    def test_calculate_result(self):
+        """
+        The smallest multiple for the range of numbers from 1 to 10 is 2520 (given)
+        """
+        self.assertEqual(self.view.calculate_result(1,10), 2520)
+
+
 class SumSquareDifferenceTest(TestCase):
     """
     Ensure that the Sum Square Difference problem works

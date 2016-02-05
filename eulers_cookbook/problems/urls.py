@@ -24,6 +24,9 @@ urlpatterns = [
 	url(r'^4/largest_palindrome_product$', views.LargestPalindromeProductView.as_view(),
 		name='largest_palindrome_product'),
 
+	url(r'^5/smallest_multiple$', views.SmallestMultipleView.as_view(),
+		name='smallest_multiple'),
+
 	url(r'^6/sum_square_difference$', views.SumSquareDifferenceView.as_view(), 
 		name='sum_square_difference'),
 

@@ -1,5 +1,7 @@
 import json
 from datetime import datetime
+from fractions import gcd
+from functools import reduce
 
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
@@ -136,9 +138,6 @@ class LargestPalindromeProductView(InteractiveSolutionView):
         return str(x) == str(x)[::-1]    
 
     def largest_palindrome_product(self, minimum, maximum):
-        """
-        Problem 4: Largest Palidrome Product
-        """
         z = 0
         x_in = 0
         y_in = 0
@@ -154,6 +153,18 @@ class LargestPalindromeProductView(InteractiveSolutionView):
 
     def calculate_result(self, x, y):
         return self.largest_palindrome_product(x, y)
+
+
+class SmallestMultipleView(InteractiveSolutionView):
+    """
+    Problem 5: Smallest Multiple
+    """
+
+    def smallest_multiple(self, minimum, maximum):
+        return minimum*maximum//gcd(minimum, maximum)
+
+    def calculate_result(self, x, y):
+        return reduce(self.smallest_multiple, range(x, y+1))
 
 
 class SumSquareDifferenceView(InteractiveSolutionView):
