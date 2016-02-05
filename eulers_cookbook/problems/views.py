@@ -43,6 +43,35 @@ class EulerProblemView(TemplateView):
         context['problem'] = get_object_or_404(Problem, number=kwargs['problem_number'])
         return context
 
+class EulerProblemAPIView(View):
+    """ 
+    API endpoint that returns JSON formatted problem data
+    """
+    def get(self, request, problem_number):
+        if not problem_number:
+            return HttpResponse(json.dumps('please specify a problem number'))
+
+        try:
+            problem_number = int(problem_number)
+        except ValueError:
+            return HttpResponse(json.dumps('Please provide an integer value.', status=400))
+
+        problem = Problem.objects.get(number=problem_number)
+
+        content = {
+            'number': problem.number,
+            'title': problem.title,
+            'description': problem.description,
+            'euler_link': problem.link,
+            'solved': problem.solved,
+            # 'solution': problem.solution,
+            'num_inputs': problem.num_inputs,
+            'callback_function': problem.callback_function,
+            'output_column_header': problem.output_column_header
+        }
+
+        return HttpResponse(json.dumps(content))
+
 
 class InteractiveSolutionView(View):
     """

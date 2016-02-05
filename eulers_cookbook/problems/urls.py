@@ -7,6 +7,8 @@ urlpatterns = [
     url(r'^about/$', TemplateView.as_view(template_name="about.html"), name='about'),
     url(r'^search/$', include('haystack.urls')),
 
+    url(r'^api/(?P<problem_number>\d+)(\..+)?/$', views.EulerProblemAPIView.as_view(), 
+    	name='api_euler_problem'),    
 
     url(r'^(?P<problem_number>\d+)(\..+)?/$', views.EulerProblemView.as_view(), 
     	name='euler_problem'),    
