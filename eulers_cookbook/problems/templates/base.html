@@ -57,16 +57,16 @@
 					{% if is_paginated %}
 				        <div class="pagination">
 				            <span class="page-links">
-				            	{% if page_obj.number != 1 %}
+				            	{% if page_obj.number != 1 and page_obj.number != 2 %}
 									<a href="?page={{ page_obj.1 }}"<i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i></a>
 								{% else %}
-									<p><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i></p>
+									<p style="color: #E1E3E4"><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i></p>
 								{% endif %}
 
 				                {% if page_obj.has_previous %}
 				                    <a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-chevron-left"></i></a>
 			                    {% else %}
-			                    	<p><i class="fa fa-chevron-left"></i></p>
+			                    	<p style="color: #E1E3E4"><i class="fa fa-chevron-left"></i></p>
 				                {% endif %}
 				                <span class="page-current">
 				                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
@@ -74,13 +74,13 @@
 				                {% if page_obj.has_next %}
 				                    <a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-chevron-right"></i></a>
 			                    {% else %}
-			                    	<p><i class="fa fa-chevron-right"></i></p>
+			                    	<p style="color: #E1E3E4"><i class="fa fa-chevron-right"></i></p>
 				                {% endif %}
 				                
 				                {% if page_obj.number != page_obj.paginator.num_pages %}
 				                	<a href="?page={{ page_obj.paginator.num_pages }}"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
 			                	{% else %}
-				                	<p><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></p>
+				                	<p style="color: #E1E3E4"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></p>
 			                	{% endif %}
 				            </span>
 				        </div>
