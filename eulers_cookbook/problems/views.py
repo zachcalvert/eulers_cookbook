@@ -27,7 +27,7 @@ class ProblemListView(ListView):
         else:
             queryset = Problem.objects.all()
 
-        return queryset
+        return queryset.order_by('number')
 
     def get_context_data(self, *args, **kwargs):
         context = super(ProblemListView, self).get_context_data(**kwargs)
