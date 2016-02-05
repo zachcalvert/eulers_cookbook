@@ -37,9 +37,9 @@
                     <div class="pagination">
                         <span class="page-links">
                             {% if page.has_previous %}
-                                <a href="?q={{ query }}&page={{ page.previous_page_number }}"><i class="fa fa-chevron-left"></i></a>
+                                <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}"><i class="fa fa-chevron-left"></i></a>
                             {% else %}
-                                <p><i class="fa fa-chevron-left"></i></p>
+                                <p style="color: #E1E3E4"><i class="fa fa-chevron-left"></i></p>
                             {% endif %}
                             <span class="page-current">
                                 Page {{ page.number }} of {{ page.paginator.num_pages }}
@@ -47,7 +47,7 @@
                             {% if page.has_next %}
                                 <a href="?q={{ query }}&page={{ page.next_page_number }}"><i class="fa fa-chevron-right"></i></a>
                             {% else %}
-                                <p><i class="fa fa-chevron-right"></i></p>
+                                <p style="color: #E1E3E4"><i class="fa fa-chevron-right"></i></p>
                             {% endif %}
                         </span>
                     </div>
