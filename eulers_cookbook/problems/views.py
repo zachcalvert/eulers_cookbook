@@ -1,4 +1,5 @@
 import json
+import math
 from datetime import datetime
 from fractions import gcd
 from functools import reduce
@@ -214,3 +215,25 @@ class SumSquareDifferenceView(InteractiveSolutionView):
         """
         return self.square_of_sums(x) - self.sum_of_squares(x)
 
+
+class TenThousandandFirstPrimeView(InteractiveSolutionView):
+    """
+    Problem 7: 10,0001st Prime
+    """
+
+    def is_prime(self, x):
+        if x % 2 == 0 and x > 2:
+            return False
+        return all(x % i for i in range(3, int(math.sqrt(x)) + 1, 2))
+
+    def nth_prime(self, x):
+        i=0
+        counter=1
+        while (i < x):
+            counter += 1;
+            if self.is_prime(counter):
+                i += 1;
+        return counter
+
+    def calculate_result(self, x):
+        return self.nth_prime(x)

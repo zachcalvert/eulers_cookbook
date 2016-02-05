@@ -190,6 +190,41 @@ class SumSquareDifferenceTest(TestCase):
         self.assertEqual(response_data['value'], 2640)
 
 
+class TenThousandAndFirstPrimeTest(TestCase):
+    """
+    Ensure that the Ten Thousand and First Prime Number problem works
+    """
 
+    def setUp(self):
+        self.view = views.TenThousandandFirstPrimeView()
+
+    def test_is_prime(self):
+        """
+        Three and 29 are prime numbers. 4 and 56 are not
+        """
+        self.assertTrue(self.view.is_prime(3))
+        self.assertTrue(self.view.is_prime(29))
+        self.assertFalse(self.view.is_prime(4))
+        self.assertFalse(self.view.is_prime(56))
+
+    def test_nth_prime(self):
+        """
+        The 6th prime is 13 (given)
+        """
+        self.assertEqual(self.view.nth_prime(6), 13)
+
+    def test_interactive_endpoint(self):
+        """
+        Verify that the ineteractive url works correctly
+        """
+        client = Client()
+        url = reverse('10001st_prime') + '?x=6'
+        response = client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+
+        response_data = json.loads(response.content)
+        self.assertEqual(response_data['x'], 6)
+        self.assertEqual(response_data['value'], 13)
 
 
