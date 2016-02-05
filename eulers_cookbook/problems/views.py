@@ -180,7 +180,7 @@ class SumSquareDifferenceView(InteractiveSolutionView):
 
     def calculate_result(self, x):
         """
-        Problem 4: Largest Palidrome Product
+        Problem 6: Sum Square Difference
         """
-        return self.square_of_sums(x) - self.sum_of_squares(x)    
+        return self.square_of_sums(x) - self.sum_of_squares(x)
 
