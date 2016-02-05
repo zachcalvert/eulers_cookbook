@@ -100,7 +100,11 @@ class InteractiveSolutionView(View):
         y = self.request.GET.get('y', None)
 
         if y:
-            value = self.calculate_result(x, int(y)) 
+            try:
+                y = int(y)
+            except ValueError:
+                return HttpResponse('Please provide two integer values.', status=400)
+            value = self.calculate_result(x, y) 
         else:
             value = self.calculate_result(x) 
 

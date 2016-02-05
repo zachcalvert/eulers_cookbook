@@ -120,7 +120,7 @@ class LargestPalindromeProductTest(TestCase):
 
         response_data = json.loads(response.content)
         self.assertEqual(response_data['x'], 10)
-        self.assertEqual(int(response_data['y']), 99)
+        self.assertEqual(response_data['y'], 99)
         self.assertEqual(response_data['value'], 9009)
 
 
