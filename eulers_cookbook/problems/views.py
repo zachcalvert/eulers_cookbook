@@ -43,6 +43,7 @@ class EulerProblemView(TemplateView):
         context['problem'] = get_object_or_404(Problem, number=kwargs['problem_number'])
         return context
 
+
 class EulerProblemAPIView(View):
     """ 
     API endpoint that returns JSON formatted problem data
@@ -94,7 +95,7 @@ class InteractiveSolutionView(View):
         except ValueError:
             return HttpResponse('Please provide an integer value.', status=400)
 
-        # check for multiple inputes
+        # check for multiple inputs
         y = self.request.GET.get('y', None)
 
         if y:

@@ -22,11 +22,7 @@
 	{% if problem.solved %}
 		<div id="interact">
 			<div id="input-area">
-				{% if problem.num_inputs == 2 %}
-					<p>Enter any 2 numbers to see it in action!</p>
-				{% else %}
-					<p>Enter any number to see it in action!</p>
-				{% endif %}
+				<p>{{ problem.interactive_header }}</p>
 				<input type="text" id="interactive_input" value="">
 				{% if problem.num_inputs == 2 %}
 					<input type="text" id="interactive_input_2" value="">
