@@ -77,9 +77,8 @@ class EulerProblemAPIView(View):
 
 class InteractiveSolutionView(View):
     """
-    Abstract view that takes one integer as input, calculates the result (different per implementation)
-    and returns
-    a json dict with input, output and timestamp.
+    Abstract view that takes  or two integers as input, calculates the result (different per implementation)
+    and returns a json dict with input(s), output and timestamp.
     """
 
     def get_current_time(self):
@@ -220,7 +219,7 @@ class SumSquareDifferenceView(InteractiveSolutionView):
         return self.square_of_sums(x) - self.sum_of_squares(x)
 
 
-class TenThousandandFirstPrimeView(InteractiveSolutionView):
+class TenThousandAndFirstPrimeView(InteractiveSolutionView):
     """
     Problem 7: 10,0001st Prime
     """

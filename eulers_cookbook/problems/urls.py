@@ -32,7 +32,7 @@ urlpatterns = [
 	url(r'^6/sum_square_difference$', views.SumSquareDifferenceView.as_view(), 
 		name='sum_square_difference'),
 
-	url(r'^7/10001st_prime$', views.TenThousandandFirstPrimeView.as_view(),
+	url(r'^7/10001st_prime$', views.TenThousandAndFirstPrimeView.as_view(),
 		name='10001st_prime'),
 
 ]

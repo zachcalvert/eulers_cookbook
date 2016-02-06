@@ -196,7 +196,7 @@ class TenThousandAndFirstPrimeTest(TestCase):
     """
 
     def setUp(self):
-        self.view = views.TenThousandandFirstPrimeView()
+        self.view = views.TenThousandAndFirstPrimeView()
 
     def test_is_prime(self):
         """
