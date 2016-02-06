@@ -191,7 +191,6 @@ DJANGO_APPS = (
     'django.contrib.staticfiles',
     'django_extensions',
     'haystack',
-    'rest_framework',
 
     # Admin panel and documentation:
     'django.contrib.admin',
