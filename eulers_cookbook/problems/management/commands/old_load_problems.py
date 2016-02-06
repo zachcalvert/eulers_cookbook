@@ -8,7 +8,7 @@ from problems.models import Problem
 
 class Command(BaseCommand):
     """
-    Management command to load problem info from project euler site into the db
+    Management command to scrape problem info from projecteuler.net into the db
     """
     def handle(self, *args, **options):
         for i in range(1,15):
