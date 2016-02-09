@@ -12,7 +12,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         for i in range(1,510):
             url = 'http://eulerscookbook.org/api/{}/'.format(i)
-            print(url)
             response = requests.get(url, verify=False)    
             
             response_data = json.loads(response.content)

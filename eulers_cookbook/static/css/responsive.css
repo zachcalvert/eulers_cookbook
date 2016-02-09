@@ -46,7 +46,7 @@
       background-color: white!important;
       opacity: 1;
       border-bottom: 1px solid black!important;
-      font-size: 64px!important;
+      font-size: 36px!important;
       border-top: 0px!important;
       border-left: 0px!important;
       border-right: 0px!important;
@@ -59,7 +59,7 @@
       top:200px;
       left:100px;
       display:block;
-      font-size: 48px;
+      font-size: 24px;
       height: 100px;
   }
 
@@ -91,7 +91,7 @@
   .search-form button
   {
       position:absolute;
-      top:200px;
+      top:160px;
       left: 5%;
       border:1px solid #000;
       background-color:white;
