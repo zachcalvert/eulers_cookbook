@@ -51,12 +51,12 @@ class EulerProblemAPIView(View):
     """
     def get(self, request, problem_number):
         if not problem_number:
-            return HttpResponse(json.dumps('please specify a problem number'))
+            return HttpResponse(json.dumps('A problem number is required.', status=400))
 
         try:
             problem_number = int(problem_number)
         except ValueError:
-            return HttpResponse(json.dumps('Please provide an integer value.', status=400))
+            return HttpResponse(json.dumps('A problem number is required.', status=400))
 
         problem = Problem.objects.get(number=problem_number)
 
@@ -66,7 +66,6 @@ class EulerProblemAPIView(View):
             'description': problem.description,
             'euler_link': problem.link,
             'solved': problem.solved,
-            # 'solution': problem.solution,
             'num_inputs': problem.num_inputs,
             'callback_function': problem.callback_function,
             'output_column_header': problem.output_column_header

@@ -5,13 +5,14 @@ from django.core.management.base import BaseCommand
 
 from problems.models import Problem
 
+
 class Command(BaseCommand):
     """
     Management command to load problem data from eulerscookbook.org
     """
     def handle(self, *args, **options):
         for i in range(1,510):
-            url = 'http://eulerscookbook.org/api/{}/'.format(i)
+            url = 'http://eulerscookbook.org/api/v2/problem/{}/'.format(i)
             response = requests.get(url, verify=False)    
             
             response_data = json.loads(response.content)

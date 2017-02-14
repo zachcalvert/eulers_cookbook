@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.urlresolvers import reverse
 
+
 class Problem(models.Model):
     number = models.IntegerField(default=1)
     title = models.CharField(max_length=60)

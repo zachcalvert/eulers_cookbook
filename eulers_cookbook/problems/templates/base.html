@@ -121,6 +121,7 @@
 		{% block extra_body_content %}
 			<script>
 			    $(document).ready(function () {
+			    	// hide and show mobile drop down menu on click
 		            $('#top-nav-menu a').click(function(){
 		                if ($("ul.nav-menu").is(":visible")) {
 		                    $("ul.nav-menu").slideUp(300);
@@ -131,6 +132,7 @@
 		                }
 		            });
 
+		            // hide and show mobile search template on click
                     $('#top-nav-search').click(function () {
                     	$('html, body').animate({ scrollTop: 0 }, 'fast');
 		                // get template
@@ -143,7 +145,8 @@
 		                $('#search-overlay').remove();
 		            });
 			    });
-
+				
+				// hide the mobile nav menu if the user clicks anywhere outside it
 	            $(document).mouseup(function (e) {
 	                var container = $("ul.nav-menu");
 	                if (!container.is(e.target) // if the target of the click isn't the container...

@@ -3,9 +3,11 @@ from django import forms
 
 from problems.models import Problem
 
+
 class ProblemForm(forms.ModelForm):
     description = forms.CharField(widget=forms.Textarea)
     solution = forms.CharField(widget=forms.Textarea)    
+
 
     class Meta:
         model = Problem

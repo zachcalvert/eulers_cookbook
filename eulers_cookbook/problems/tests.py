@@ -3,7 +3,7 @@ import json
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
 
-import views
+from problems import views
 
 
 class MultiplesOfThreeAndFiveTest(TestCase):
@@ -226,5 +226,4 @@ class TenThousandAndFirstPrimeTest(TestCase):
         response_data = json.loads(response.content)
         self.assertEqual(response_data['x'], 6)
         self.assertEqual(response_data['value'], 13)
-
 

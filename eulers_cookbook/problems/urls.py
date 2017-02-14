@@ -7,13 +7,13 @@ urlpatterns = [
     url(r'^about/$', TemplateView.as_view(template_name="about.html"), name='about'),
     url(r'^search/$', include('haystack.urls')),
 
-    url(r'^api/(?P<problem_number>\d+)(\..+)?/$', views.EulerProblemAPIView.as_view(), 
+    url(r'^api/v2/problem/(?P<problem_number>\d+)(\..+)?/$', views.EulerProblemAPIView.as_view(), 
     	name='api_euler_problem'),    
 
     url(r'^(?P<problem_number>\d+)(\..+)?/$', views.EulerProblemView.as_view(), 
     	name='euler_problem'),    
 
-    # interactive callback urls
+    # interactive problem urls
 	url(r'^1/multiples_of_three_and_five$', views.MultiplesOfThreeAndFiveView.as_view(), 
 		name='multiples_of_three_and_five'),
 
