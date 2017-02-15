@@ -35,4 +35,7 @@ urlpatterns = [
 	url(r'^7/10001st_prime$', views.TenThousandAndFirstPrimeView.as_view(),
 		name='10001st_prime'),
 
+	url(r'^10/summation_of_primes$', views.SummationofPrimesView.as_view(),
+		name='summation_of_primes'),
+
 ]

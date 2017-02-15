@@ -12,6 +12,7 @@ from django.views.generic import TemplateView, View, ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from problems.models import Problem
+from problems import utils
 
 
 class ProblemListView(ListView):
@@ -76,10 +77,9 @@ class EulerProblemAPIView(View):
 
 class InteractiveSolutionView(View):
     """
-    Abstract view that takes  or two integers as input, calculates the result (different per implementation)
+    Abstract view that takes one or two integers as input, calculates the result (different per implementation)
     and returns a json dict with input(s), output and timestamp.
     """
-
     def get_current_time(self):
         return datetime.now().strftime('%m-%d %H:%M:%S')
 
@@ -223,19 +223,29 @@ class TenThousandAndFirstPrimeView(InteractiveSolutionView):
     Problem 7: 10,0001st Prime
     """
 
-    def is_prime(self, x):
-        if x % 2 == 0 and x > 2:
-            return False
-        return all(x % i for i in range(3, int(math.sqrt(x)) + 1, 2))
-
     def nth_prime(self, x):
         i=0
         counter=1
         while (i < x):
             counter += 1;
-            if self.is_prime(counter):
+            if utils.is_prime(counter):
                 i += 1;
         return counter
 
     def calculate_result(self, x):
         return self.nth_prime(x)
+
+
+class SummationofPrimesView(InteractiveSolutionView):
+    """
+    Problem 10: Summation of Primes
+    """
+
+    def summation_of_primes(self, x):
+        primes = [number for number in range(2, x) if utils.is_prime(number)]
+        return sum(primes)
+
+
+    def calculate_result(self, x):
+        return self.summation_of_primes(x)
+
