@@ -3,12 +3,10 @@ from django.views.generic import TemplateView
 from problems import views
 
 urlpatterns = [
+
     url(r'^$', views.ProblemListView.as_view(), name='site_home'),
     url(r'^about/$', TemplateView.as_view(template_name="about.html"), name='about'),
     url(r'^search/$', include('haystack.urls')),
-
-    url(r'^api/v2/problem/(?P<problem_number>\d+)(\..+)?/$', views.EulerProblemAPIView.as_view(), 
-    	name='api_euler_problem'),    
 
     url(r'^(?P<problem_number>\d+)(\..+)?/$', views.EulerProblemView.as_view(), 
     	name='euler_problem'),    
@@ -37,5 +35,5 @@ urlpatterns = [
 
 	url(r'^10/summation_of_primes$', views.SummationofPrimesView.as_view(),
 		name='summation_of_primes'),
-
+	
 ]

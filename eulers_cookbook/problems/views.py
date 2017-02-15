@@ -50,6 +50,7 @@ class EulerProblemAPIView(View):
     """ 
     API endpoint that returns JSON formatted problem data
     """
+
     def get(self, request, problem_number):
         if not problem_number:
             return HttpResponse(json.dumps('A problem number is required.', status=400))
@@ -80,6 +81,7 @@ class InteractiveSolutionView(View):
     Abstract view that takes one or two integers as input, calculates the result (different per implementation)
     and returns a json dict with input(s), output and timestamp.
     """
+
     def get_current_time(self):
         return datetime.now().strftime('%m-%d %H:%M:%S')
 
@@ -122,6 +124,7 @@ class MultiplesOfThreeAndFiveView(InteractiveSolutionView):
     """
     Problem 1: Multiples of Three and Five
     """
+
     def multiples_of_three_and_five(self, x):
         return sum([i for i in range(x) if i % 3 == 0 or i % 5 == 0])
 
@@ -133,6 +136,7 @@ class EvenFibonacciNumbersView(InteractiveSolutionView):
     """
     Problem 2: Even Fibonacci numbers
     """
+
     def even_fibonacci_numbers(self, x):
         a, b = 1, 1
         total = 0
@@ -150,6 +154,7 @@ class LargestPrimeFactorView(InteractiveSolutionView):
     """
     Problem 3: Largest Prime Factor
     """
+
     def largest_prime_factor(self, x):
         i = 2
         while i * i < x:
@@ -167,16 +172,13 @@ class LargestPalindromeProductView(InteractiveSolutionView):
     Problem 4: Largest Palindrome Product
     """
 
-    def is_palindrome(self, x):
-        return str(x) == str(x)[::-1]    
-
     def largest_palindrome_product(self, minimum, maximum):
         z = 0
         x_in = 0
         y_in = 0
         for x in range(maximum, minimum, -1):
             for y in range(maximum,minimum, -1):
-                if self.is_palindrome(x*y):
+                if utils.is_palindrome(x*y):
                     if x*y > z:
                         z = x*y
                         x_in = x

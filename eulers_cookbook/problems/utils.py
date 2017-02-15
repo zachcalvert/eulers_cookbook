@@ -4,6 +4,12 @@ Utility functions that may be used across different solutions.
 
 import math
 
+def is_palindrome(x):
+	"""
+	Determines if a string of letters (or numbers!) is the same backwards as forwards
+	"""
+    return str(x) == str(x)[::-1]
+
 def is_prime(x):
 	"""
 	Determines whether an integer x is prime or not.

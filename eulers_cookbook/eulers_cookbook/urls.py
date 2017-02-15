@@ -5,6 +5,7 @@ from django.conf import settings
 
 urlpatterns = [
 	url(r'^', include('problems.urls')),
+    url(r'^api/', include('problems.api_urls')),
 	url(r'^grappelli/', include('grappelli.urls')),
 	url(r'^admin/', include(admin.site.urls)),
 ]

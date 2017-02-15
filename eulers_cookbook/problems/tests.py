@@ -34,7 +34,7 @@ class MultiplesOfThreeAndFiveTest(TestCase):
 
     def test_multiples_of_three_and_five(self):
         """
-        The sum of all multiples of three and 5 less than 10 is 23 (given)
+        The sum of all multiples of three and 5 less than 10 is 23 (given in problem statement)
         """
         self.assertEqual(self.view.multiples_of_three_and_five(10), 23)
 
@@ -63,7 +63,7 @@ class EvenFibonacciNumbersTest(TestCase):
 
     def test_even_fibonacci_numbers(self):
         """
-        The first 10 terms less than 100 are 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 (given)
+        The first 10 terms less than 100 are 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 (given in problem statement)
         therefore the sum of the even valued terms will be equal to 2 + 8 + 34
         """
         self.assertEqual(self.view.even_fibonacci_numbers(100), 2+8+34)
@@ -93,7 +93,7 @@ class LargestPrimeFactorTest(TestCase):
 
     def test_largest_prime_factor(self):
         """
-        The largest prime factor of 13195 is 29 (given)
+        The largest prime factor of 13195 is 29 (given in problem statement)
         """
         self.assertEqual(self.view.largest_prime_factor(13195), 29)
 
@@ -122,7 +122,7 @@ class LargestPalindromeProductTest(TestCase):
 
     def test_largest_prime_factor(self):
         """
-        The largest palindrome product of any two two digit numbers is 9009 (given)
+        The largest palindrome product of any two two digit numbers is 9009 (given in problem statement)
         """
         self.assertEqual(self.view.largest_palindrome_product(10, 99), 9009)
 
@@ -162,7 +162,7 @@ class SmallestMultipleTest(TestCase):
 
     def test_calculate_result(self):
         """
-        The smallest multiple for the range of numbers from 1 to 10 is 2520 (given)
+        The smallest multiple for the range of numbers from 1 to 10 is 2520 (given in problem statement)
         """
         self.assertEqual(self.view.calculate_result(1,10), 2520)
 
@@ -177,19 +177,19 @@ class SumSquareDifferenceTest(TestCase):
 
     def test_square_of_sums(self):
         """
-        The sum of the squares of the first 10 natural numbers is 3025 (given)
+        The sum of the squares of the first 10 natural numbers is 3025 (given in problem statement)
         """
         self.assertEqual(self.view.square_of_sums(10), 3025)    
     
     def test_sum_of_squares(self):
         """
-        The sum of the squares of the first 10 natural numbers is 385 (given)
+        The sum of the squares of the first 10 natural numbers is 385 (given in problem statement)
         """
         self.assertEqual(self.view.sum_of_squares(10), 385)    
 
     def test_calculate_result(self):
         """
-        The calculated difference between the above functions with input 10 is 2640 (given)
+        The calculated difference between the above functions with input 10 is 2640 (given in problem statement)
         """
         self.assertEqual(self.view.calculate_result(10), 2640)
 
@@ -218,7 +218,7 @@ class TenThousandAndFirstPrimeTest(TestCase):
 
     def test_nth_prime(self):
         """
-        The 6th prime is 13 (given)
+        The 6th prime is 13 (given in problem statement)
         """
         self.assertEqual(self.view.nth_prime(6), 13)
 
