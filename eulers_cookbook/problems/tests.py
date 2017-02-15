@@ -3,7 +3,25 @@ import json
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
 
-from problems import views
+from problems import utils, views
+
+
+class TestUtils(TestCase):
+    """
+    Test the functions defined in utils.py
+    """
+    
+    def test_is_prime(self):
+        """
+        2, 3, and 29 are prime numbers. 4 9, and 56 are not.
+        """
+        self.assertTrue(utils.is_prime(2))
+        self.assertTrue(utils.is_prime(3))
+        self.assertTrue(utils.is_prime(29))
+
+        self.assertFalse(utils.is_prime(4))
+        self.assertFalse(utils.is_prime(9))
+        self.assertFalse(utils.is_prime(56))
 
 
 class MultiplesOfThreeAndFiveTest(TestCase):
@@ -198,15 +216,6 @@ class TenThousandAndFirstPrimeTest(TestCase):
     def setUp(self):
         self.view = views.TenThousandAndFirstPrimeView()
 
-    def test_is_prime(self):
-        """
-        Three and 29 are prime numbers. 4 and 56 are not
-        """
-        self.assertTrue(self.view.is_prime(3))
-        self.assertTrue(self.view.is_prime(29))
-        self.assertFalse(self.view.is_prime(4))
-        self.assertFalse(self.view.is_prime(56))
-
     def test_nth_prime(self):
         """
         The 6th prime is 13 (given)
@@ -226,4 +235,34 @@ class TenThousandAndFirstPrimeTest(TestCase):
         response_data = json.loads(response.content)
         self.assertEqual(response_data['x'], 6)
         self.assertEqual(response_data['value'], 13)
+
+
+class SummationofPrimesTest(TestCase):
+    """
+    Ensure that the Summation of Primes problem works.
+    """
+
+    def setUp(self):
+        self.view = views.SummationofPrimesView()
+
+    def test_summation_of_primes(self):
+        """
+        The sum of the primes below 10 is 17 (given in problem statement)
+        """
+        self.assertEqual(self.view.summation_of_primes(10), 17)
+
+    def test_interactive_endpoint(self):
+        """
+        Verify that the interactive url works correctly
+        """
+        client = Client()
+        url = reverse('summation_of_primes') + '?x=10'
+        response = client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+
+        response_data = json.loads(response.content)
+        self.assertEqual(response_data['x'], 10)
+        self.assertEqual(response_data['value'], 17)
+
 

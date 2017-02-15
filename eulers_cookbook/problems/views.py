@@ -245,7 +245,6 @@ class SummationofPrimesView(InteractiveSolutionView):
         primes = [number for number in range(2, x) if utils.is_prime(number)]
         return sum(primes)
 
-
     def calculate_result(self, x):
         return self.summation_of_primes(x)
 
