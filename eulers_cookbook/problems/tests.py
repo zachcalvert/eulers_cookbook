@@ -13,7 +13,7 @@ class TestUtils(TestCase):
     
     def test_is_prime(self):
         """
-        2, 3, and 29 are prime numbers. 4 9, and 56 are not.
+        Ensure that the is_prime utility function works.
         """
         self.assertTrue(utils.is_prime(2))
         self.assertTrue(utils.is_prime(3))
@@ -22,6 +22,18 @@ class TestUtils(TestCase):
         self.assertFalse(utils.is_prime(4))
         self.assertFalse(utils.is_prime(9))
         self.assertFalse(utils.is_prime(56))
+
+    def test_is_palindrome(self):
+        """
+        Ensure that the is_palindrome utility function works.
+        """
+        self.assertTrue(utils.is_palindrome('racecar'))
+        self.assertTrue(utils.is_palindrome('euston saw I was notsue'))
+        self.assertTrue(utils.is_palindrome(123454321))
+
+        self.assertFalse(utils.is_palindrome('racecars'))
+        self.assertFalse(utils.is_palindrome('Euston saw I was not Suzanne'))
+        self.assertFalse(utils.is_palindrome(1234544321))
 
 
 class MultiplesOfThreeAndFiveTest(TestCase):

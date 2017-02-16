@@ -8,7 +8,7 @@ def is_palindrome(x):
 	"""
 	Determines if a string of letters (or numbers!) is the same backwards as forwards
 	"""
-    return str(x) == str(x)[::-1]
+	return str(x) == str(x)[::-1]
 
 def is_prime(x):
 	"""
