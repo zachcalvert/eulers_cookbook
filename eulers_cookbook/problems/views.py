@@ -250,3 +250,21 @@ class SummationofPrimesView(InteractiveSolutionView):
     def calculate_result(self, x):
         return self.summation_of_primes(x)
 
+
+class DoubleBasePalindromes(InteractiveSolutionView):
+    """
+    Problem 36: Double Base Palindromes
+    """
+
+    def double_base_palindromes(self, x):
+        """
+        Calculates the sum of all numbers less than x, that are palindromic in both base 10 and base 2.
+        """
+        # bin(x) results in a binary number prefaced with '0x', hence the slice 
+        double_palindromes = [number for number in range(x) if utils.is_palindrome(number) and utils.is_palindrome(bin(number)[2:])]
+        return sum(double_palindromes)
+
+    def calculate_result(self, x):
+        return self.double_base_palindromes(x)
+
+

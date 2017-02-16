@@ -278,3 +278,32 @@ class SummationofPrimesTest(TestCase):
         self.assertEqual(response_data['value'], 17)
 
 
+class DoubleBasePalindomesTest(TestCase):
+    """
+    Ensure that the Double Base Palindromes problem works.
+    """
+
+    def setUp(self):
+        self.view = views.DoubleBasePalindromes()
+
+    def test_double_base_palindromes(self):
+        """
+        The sum of the double base palindromes less than 1 million is 872187 (verified on project euler)
+        """
+        self.assertEqual(self.view.double_base_palindromes(1000000), 872187)
+
+    def test_interactive_endpoint(self):
+        """
+        Verify that the interactive url works correctly
+        """
+        client = Client()
+        url = reverse('double_base_palindromes') + '?x=1000000'
+        response = client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+
+        response_data = json.loads(response.content)
+        self.assertEqual(response_data['x'], 1000000)
+        self.assertEqual(response_data['value'], 872187)
+
+

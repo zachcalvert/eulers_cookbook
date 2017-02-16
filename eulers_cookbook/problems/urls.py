@@ -35,5 +35,8 @@ urlpatterns = [
 
 	url(r'^10/summation_of_primes$', views.SummationofPrimesView.as_view(),
 		name='summation_of_primes'),
+
+	url(r'^36/double_base_palindromes$', views.DoubleBasePalindromes.as_view(),
+		name='double_base_palindromes'),
 	
 ]
