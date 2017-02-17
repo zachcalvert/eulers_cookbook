@@ -251,7 +251,33 @@ class SummationofPrimesView(InteractiveSolutionView):
         return self.summation_of_primes(x)
 
 
-class DoubleBasePalindromes(InteractiveSolutionView):
+class CircularPrimesView(InteractiveSolutionView):
+    """
+    Problem 35: Circular Primes
+    """
+
+    def circular_primes(self, x):
+        """
+        Determines the number of circular primes less than x.
+        197 is a circular prime because each rotation (197, 971, 719) is prime.
+        """
+        count = 0
+        for number in range(2, x): # else 0 and 1 will count
+            num_as_str = str(number)
+            for rotation in range(len(num_as_str)): # for each digit
+                rotated = utils.rotate_list(num_as_str, rotation) # rotate
+                if not utils.is_prime(int(rotated)):
+                    break
+            else: # no break statement encountered, this number is a circular prime
+                count += 1
+
+        return count
+
+    def calculate_result(self, x):
+        return self.circular_primes(x)
+
+
+class DoubleBasePalindromesView(InteractiveSolutionView):
     """
     Problem 36: Double Base Palindromes
     """
@@ -266,5 +292,4 @@ class DoubleBasePalindromes(InteractiveSolutionView):
 
     def calculate_result(self, x):
         return self.double_base_palindromes(x)
-
 

@@ -36,7 +36,10 @@ urlpatterns = [
 	url(r'^10/summation_of_primes$', views.SummationofPrimesView.as_view(),
 		name='summation_of_primes'),
 
-	url(r'^36/double_base_palindromes$', views.DoubleBasePalindromes.as_view(),
+	url(r'^35/circular_primes$', views.CircularPrimesView.as_view(),
+		name='circular_primes'),
+
+	url(r'^36/double_base_palindromes$', views.DoubleBasePalindromesView.as_view(),
 		name='double_base_palindromes'),
 	
 ]

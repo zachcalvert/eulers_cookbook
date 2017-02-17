@@ -278,13 +278,42 @@ class SummationofPrimesTest(TestCase):
         self.assertEqual(response_data['value'], 17)
 
 
+class CircularPrimesTest(TestCase):
+    """
+    Ensure that the Circular Primes problem works.
+    """
+
+    def setUp(self):
+        self.view = views.CircularPrimesView()
+
+    def test_double_base_palindromes(self):
+        """
+        The sum of the double base palindromes less than 100 is 13 (given in problem statement)
+        """
+        self.assertEqual(self.view.circular_primes(100), 13)
+
+    def test_interactive_endpoint(self):
+        """
+        Verify that the interactive url works correctly
+        """
+        client = Client()
+        url = reverse('circular_primes') + '?x=100'
+        response = client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+
+        response_data = json.loads(response.content)
+        self.assertEqual(response_data['x'], 100)
+        self.assertEqual(response_data['value'], 13)
+
+
 class DoubleBasePalindomesTest(TestCase):
     """
     Ensure that the Double Base Palindromes problem works.
     """
 
     def setUp(self):
-        self.view = views.DoubleBasePalindromes()
+        self.view = views.DoubleBasePalindromesView()
 
     def test_double_base_palindromes(self):
         """
