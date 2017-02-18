@@ -278,6 +278,35 @@ class SummationofPrimesTest(TestCase):
         self.assertEqual(response_data['value'], 17)
 
 
+class PowerDigitSumTest(TestCase):
+    """
+    Ensure that the Power Digit Sum problem works.
+    """
+
+    def setUp(self):
+        self.view = views.PowerDigitSumView()
+
+    def test_power_digit_sum(self):
+        """
+        The sum of the digits in 2^15 is 26 (given in problem statement)
+        """
+        self.assertEqual(self.view.power_digit_sum(15), 26)
+
+    def test_interactive_endpoint(self):
+        """
+        Verify that the interactive url works correctly
+        """
+        client = Client()
+        url = reverse('power_digit_sum') + '?x=15'
+        response = client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+
+        response_data = json.loads(response.content)
+        self.assertEqual(response_data['x'], 15)
+        self.assertEqual(response_data['value'], 26)
+
+
 class CircularPrimesTest(TestCase):
     """
     Ensure that the Circular Primes problem works.

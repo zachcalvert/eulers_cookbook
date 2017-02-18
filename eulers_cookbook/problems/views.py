@@ -251,6 +251,23 @@ class SummationofPrimesView(InteractiveSolutionView):
         return self.summation_of_primes(x)
 
 
+class PowerDigitSumView(InteractiveSolutionView):
+    """
+    Problem 16: Power Digit Sum
+    """
+
+    def power_digit_sum(self, x):
+        """
+        Given integer x, determines the sum of each individual digit in the number 2**x.
+        e.g. 2745 -> 2 + 7 + 4 + 5 = 18. Utility function???
+        """
+        digits = [int(digit) for digit in str(2**x)]
+        return sum(digits)
+
+    def calculate_result(self, x):
+        return self.power_digit_sum(x)
+
+
 class CircularPrimesView(InteractiveSolutionView):
     """
     Problem 35: Circular Primes
