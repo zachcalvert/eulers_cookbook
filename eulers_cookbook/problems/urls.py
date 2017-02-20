@@ -39,6 +39,9 @@ urlpatterns = [
 	url(r'^16/power_digit_sum$', views.PowerDigitSumView.as_view(),
 		name='power_digit_sum'),
 
+	url(r'^20/factorial_digit_sum$', views.FactorialDigitSumView.as_view(),
+		name='factorial_digit_sum'),
+
 	url(r'^35/circular_primes$', views.CircularPrimesView.as_view(),
 		name='circular_primes'),
 

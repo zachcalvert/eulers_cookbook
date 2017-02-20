@@ -259,13 +259,33 @@ class PowerDigitSumView(InteractiveSolutionView):
     def power_digit_sum(self, x):
         """
         Given integer x, determines the sum of each individual digit in the number 2**x.
-        e.g. 2745 -> 2 + 7 + 4 + 5 = 18. Utility function???
         """
-        digits = [int(digit) for digit in str(2**x)]
-        return sum(digits)
+        return utils.sum_digits_in_number(2**x)
 
     def calculate_result(self, x):
         return self.power_digit_sum(x)
+
+
+class FactorialDigitSumView(InteractiveSolutionView):
+    """
+    Problem 20: Factorial Digit Sum
+    """
+    def factorial(self, x):
+        if x == 0:
+            return 1
+        else:
+            return x * self.factorial(x-1)
+
+    def factorial_digit_sum(self, x):
+        """
+        Given integer x, determines the sum of each individual digit in the number x!.
+        """
+        # x_factorial = math.factorial(x)
+        x_factorial = self.factorial(x)
+        return utils.sum_digits_in_number(x_factorial)
+
+    def calculate_result(self, x):
+        return self.factorial_digit_sum(x)
 
 
 class CircularPrimesView(InteractiveSolutionView):

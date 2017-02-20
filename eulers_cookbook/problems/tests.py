@@ -278,6 +278,35 @@ class SummationofPrimesTest(TestCase):
         self.assertEqual(response_data['value'], 17)
 
 
+class FactorialDigitSumTest(TestCase):
+    """
+    Ensure that the Factorial Digit Sum problem works.
+    """
+
+    def setUp(self):
+        self.view = views.FactorialDigitSumView()
+
+    def test_factorial_digit_sum(self):
+        """
+        The sum of the digits in 10 factorial is 27 (given in problem statement.)
+        """
+        self.assertEqual(self.view.factorial_digit_sum(10), 27)
+
+    def test_interactive_endpoint(self):
+        """
+        Verify that the interactive url works correctly
+        """
+        client = Client()
+        url = reverse('factorial_digit_sum') + '?x=10'
+        response = client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+
+        response_data = json.loads(response.content)
+        self.assertEqual(response_data['x'], 10)
+        self.assertEqual(response_data['value'], 27)
+
+
 class PowerDigitSumTest(TestCase):
     """
     Ensure that the Power Digit Sum problem works.

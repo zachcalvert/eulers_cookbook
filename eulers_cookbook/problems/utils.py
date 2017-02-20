@@ -31,3 +31,13 @@ def rotate_list(l, n):
 	Out[3]: [3, 1, 2]
 	"""
 	return l[n:] + l[:n]
+
+def sum_digits_in_number(x):
+	"""
+	Return the sum of all the digits in number x.
+	e.g. sum_digits_in_number(2745) will return 18 (2 + 7 + 4 + 5)
+	"""
+	digits = [int(digit) for digit in str(x)]
+	return sum(digits)
+
+
