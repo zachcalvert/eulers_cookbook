@@ -17,7 +17,7 @@ class Problem(models.Model):
     # template variables
     output_column_header = models.CharField(max_length=80, null=True, blank=True)
     interactive_header = models.CharField(max_length=80, 
-        default='Enter any number to see it in action!')
+        default='Enter any number to see it in action.')
 
     def get_absolute_url(self):
         return reverse('euler_problem', kwargs={'problem_number': self.number})

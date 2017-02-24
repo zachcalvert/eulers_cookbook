@@ -21,7 +21,7 @@ class Command(BaseCommand):
 
             if created:
                 try:
-                    print('added problem {0}: {1}'.format(i, title))
+                    print('added problem {0}: {1}'.format(i, problem.title))
                 except UnicodeEncodeError:
                     print('added problem {}'.format(i))
 
